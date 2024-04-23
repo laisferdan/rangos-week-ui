@@ -1,10 +1,12 @@
 ::ng-deep .p-menubar {
-    background-color: rgba(249, 223, 216, 1);
+    background-color: rgba(155, 211, 182, 1);
+    font-size: 16px;
 }
 
-::ng-deep .p-menubar:hover {
-    color: rgb(244, 89, 47);
+::ng-deep .p-menuitem:hover {
+    border-radius: 25px;
 }
+
 
 :host ::ng-deep p-menubarsub {
     width: 100%;
