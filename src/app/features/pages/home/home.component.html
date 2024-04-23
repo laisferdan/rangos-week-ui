@@ -1,1 +1,22 @@
-<p>home works!</p>
+<div class="panel">
+  <p class="panel-title"> {{ currentDate | date : 'EEEE, dd/MM/yyyy' | capitalizeFirstLetter }} </p>
+  <div class="splitter">
+    <p-splitter [style]="{ height: '300px' }" styleClass="mb-5">
+      <ng-template pTemplate>
+        <div class="col flex align-items-center justify-content-center">
+          Café da Manhã
+        </div>
+      </ng-template>
+      <ng-template pTemplate>
+        <div class="col flex align-items-center justify-content-center">
+          Almoço
+        </div>
+      </ng-template>
+      <ng-template pTemplate>
+        <div class="col flex align-items-center justify-content-center">
+          Janta
+        </div>
+      </ng-template>
+    </p-splitter>
+  </div>
+</div>
