@@ -7,7 +7,6 @@
     border-radius: 25px;
 }
 
-
 :host ::ng-deep p-menubarsub {
     width: 100%;
 }
