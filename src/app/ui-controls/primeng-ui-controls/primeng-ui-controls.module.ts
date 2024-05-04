@@ -4,6 +4,8 @@ import {ButtonModule} from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { RatingModule } from 'primeng/rating';
+import { ToastModule } from 'primeng/toast';
+import { ToolbarModule } from 'primeng/toolbar';
 
 
 @NgModule({
@@ -14,6 +16,8 @@ import { RatingModule } from 'primeng/rating';
     ButtonModule,
     TagModule,
     RatingModule,
+    ToastModule,
+    ToolbarModule
   ],
   exports: [
     MenubarModule,
@@ -21,6 +25,8 @@ import { RatingModule } from 'primeng/rating';
     ButtonModule,
     TagModule,
     RatingModule,
+    ToastModule,
+    ToolbarModule
   ] 
 })
 export class PrimengUiControlsModule { }
