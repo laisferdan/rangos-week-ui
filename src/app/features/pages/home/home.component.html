@@ -1,22 +1,110 @@
 <div class="panel">
-  <p class="panel-title"> {{ currentDate | date : 'EEEE, dd/MM/yyyy' | capitalizeFirstLetter }} </p>
-  <div class="splitter">
-    <p-splitter [style]="{ height: '300px' }" styleClass="mb-5">
-      <ng-template pTemplate>
-        <div class="col flex align-items-center justify-content-center">
-          Café da Manhã
-        </div>
-      </ng-template>
-      <ng-template pTemplate>
-        <div class="col flex align-items-center justify-content-center">
-          Almoço
-        </div>
-      </ng-template>
-      <ng-template pTemplate>
-        <div class="col flex align-items-center justify-content-center">
-          Janta
-        </div>
-      </ng-template>
-    </p-splitter>
+  <p class="panel-title">
+    {{ currentDate | date : "EEEE, dd/MM/yyyy" | capitalizeFirstLetter }}
+  </p>
+  <div class="card">
+    <p-toast />
+    <p-toolbar styleClass="mb-4 gap-2">
+      <p-table
+        [value]="cols"
+        dataKey="field"
+        [tableStyle]="{ 'min-width': '80rem' }"
+      >
+        <ng-template pTemplate="header">
+          <tr class="">
+            <th style="width: 5rem"></th>
+            <th style="font-size: 1.2rem">Refeição</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-col let-expanded="expanded">
+          <tr>
+            <td>
+              <p-button
+                type="button"
+                pRipple
+                [pRowToggler]="col"
+                [text]="true"
+                [rounded]="true"
+                [plain]="true"
+                [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"
+              />
+            </td>
+            <td>{{ col.header }}</td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="rowexpansion" let-col>
+          <tr>
+            <td colspan="7">
+              <div class="p-3">
+                <p-table [value]="col.details" dataKey="id">
+                  <ng-template pTemplate="header">
+                    <tr>
+                      <th style="width: 4rem"></th>
+                      <th
+                        pSortableColumn="nome_alimento"
+                        style="min-width: 15rem"
+                      >
+                        Nome do Alimento
+                        <p-sortIcon field="nome_alimento"></p-sortIcon>
+                      </th>
+                      <th pSortableColumn="kcal">
+                        Calorias (kcal) <p-sortIcon field="kcal"></p-sortIcon>
+                      </th>
+                      <th pSortableColumn="quantidade" style="min-width: 10rem">
+                        Quantidade (g)
+                        <p-sortIcon field="quantidade"></p-sortIcon>
+                      </th>
+                      <th
+                        pSortableColumn="nome_categoria"
+                        style="min-width: 10rem"
+                      >
+                        Categoria
+                        <p-sortIcon field="nome_categoria"></p-sortIcon>
+                      </th>
+                      <th>
+                        <button
+                          pButton
+                          pRipple
+                          label="New"
+                          icon="pi pi-plus"
+                          class="p-button-success mr-2"
+                          (click)="openNew()"
+                        ></button>
+                      </th>
+                      <th></th>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-detail>
+                    <tr>
+                      <td></td>
+                      <td>{{ detail.nome_alimento }}</td>
+                      <td>{{ detail.kcal }}</td>
+                      <td>{{ detail.quantidade }}</td>
+                      <td>{{ detail.nome_categoria }}</td>
+                      <td class="ms-2">
+                        <button
+                          pButton
+                          pRipple
+                          icon="pi pi-pencil"
+                          class="p-button-rounded p-button-success mr-2"
+                          (click)="editAlimentoCardapio(alimentoCardapio)"
+                        ></button>
+                        <button
+                          pButton
+                          pRipple
+                          icon="pi pi-trash"
+                          class="p-button-rounded p-button-warning"
+                          (click)="deleteAlimentoCardapio(alimentoCardapio)"
+                        ></button>
+                      </td>
+                    </tr>
+                  </ng-template>
+                </p-table>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </p-toolbar>
   </div>
 </div>
