@@ -13,3 +13,19 @@
     margin: 0 auto 2rem auto;
     display: block;
 }
+
+.field {
+    margin-bottom: 35px;
+}
+
+.labelItem {
+    display: flex;
+    flex-direction: row;
+    width: 400px;
+    margin-bottom: 8px;
+}
+
+.editDeleteButtons {
+    margin-right:10px;
+    margin-left:22px;
+}

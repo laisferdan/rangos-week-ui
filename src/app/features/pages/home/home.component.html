@@ -65,7 +65,7 @@
                         <button
                           pButton
                           pRipple
-                          label="New"
+                          label="Adicionar alimento"
                           icon="pi pi-plus"
                           class="p-button-success mr-2"
                           (click)="openNew()"
@@ -81,20 +81,20 @@
                       <td>{{ detail.kcal }}</td>
                       <td>{{ detail.quantidade }}</td>
                       <td>{{ detail.nome_categoria }}</td>
-                      <td class="ms-2">
+                      <td>
                         <button
                           pButton
                           pRipple
                           icon="pi pi-pencil"
-                          class="p-button-rounded p-button-success mr-2"
-                          (click)="editAlimentoCardapio(alimentoCardapio)"
+                          class="p-button-rounded p-button-success editDeleteButtons"
+                          (click)="editAlimentoCardapio(detail)"
                         ></button>
                         <button
                           pButton
                           pRipple
                           icon="pi pi-trash"
-                          class="p-button-rounded p-button-warning"
-                          (click)="deleteAlimentoCardapio(alimentoCardapio)"
+                          class="p-button-rounded p-button-warning editDeleteButtons"
+                          (click)="deleteAlimentoCardapio(detail)"
                         ></button>
                       </td>
                     </tr>
@@ -106,5 +106,61 @@
         </ng-template>
       </p-table>
     </p-toolbar>
+    <p-dialog
+      [(visible)]="cardapioDialog"
+      [style]="{ 'width': '40rem', 'height': '25rem' }"
+      header="Detalhes do Alimento"
+      [modal]="true"
+      styleClass="p-fluid"
+    >
+      <ng-template pTemplate="content">
+        <div class="formgrid grid">
+          <div class="field">
+            <label for="nome_alimento" class="labelItem">Nome do alimento</label>
+            <p-dropdown
+              [options]="cardapios"
+              [(ngModel)]="selectedAlimento"
+              optionLabel="nome_alimento"
+              [filter]="true"
+              filterBy="nome_alimento"
+              [showClear]="true"
+              placeholder="Selecione um alimento"
+              appendTo="body"
+            >
+              <ng-template pTemplate="selectedItem" let-selectedOption>
+                <div class="flex align-items-center gap-2">
+                  <div>{{ selectedOption.nome_alimento }}</div>
+                </div>
+              </ng-template>
+              <ng-template let-alimento pTemplate="item">
+                <div class="flex align-items-center gap-2">
+                  <div>{{ alimento.nome_alimento }}</div>
+                </div>
+              </ng-template>
+            </p-dropdown>
+          </div>
+        </div>
+
+        <div class="formgrid grid">
+          <div class="field col">
+            <label for="quantidade" class="labelItem">Quantidade</label>
+            <p-inputNumber id="quantidade" />
+          </div>
+        </div>
+      </ng-template>
+
+      <ng-template pTemplate="footer">
+        <p-button
+          pRipple
+          label="Cancelar"
+          icon="pi pi-times"
+          [text]="true"
+          (click)="hideDialog()"
+        />
+        <p-button pRipple label="Salvar" icon="pi pi-check" [text]="true" />
+      </ng-template>
+    </p-dialog>
+
+    <p-confirmDialog [style]="{ width: '450px' }" />
   </div>
 </div>
