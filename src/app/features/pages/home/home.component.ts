@@ -1,9 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Column } from '../../../core/models/column';
 import { MessageService, ConfirmationService } from 'primeng/api';
 import { CardapioService } from '../../../shared/services/cardapio.service';
 import { Cardapio } from '../../../core/models/cardapio.model';
-import { Table } from 'primeng/table';
 
 @Component({
   selector: 'app-home',
@@ -12,17 +11,15 @@ import { Table } from 'primeng/table';
   providers: [MessageService, ConfirmationService],
 })
 export class HomeComponent implements OnInit {
-  @ViewChild('dt') dt: Table | undefined;
   public currentDate = new Date();
   public cols: Column[] = [];
-  public productDialog: boolean = false;
-  public alimentosCardapio!: Cardapio[];
-  public alimentoCardapio!: Cardapio;
-  public selectedAlimentosCardapio!: Cardapio[] | null;
+  public cardapioDialog: boolean = false;
+  public cardapios!: Cardapio[];
+  public cardapio!: Cardapio;
+  public selectedCardapios!: Cardapio[] | null;
+  public selectedAlimento!: string | null;
   public submitted: boolean = false;
-  public statuses!: any[];
-  public Delete: string = '';
-
+  public obj: any;
   constructor(
     private cardapioService: CardapioService,
     private messageService: MessageService,
@@ -30,9 +27,16 @@ export class HomeComponent implements OnInit {
   ) {}
 
   public ngOnInit() {
-    // this.cardapioService.getCardapio().then((data) => (this.alimentosCardapio = data));
+  //   this.cardapioService.getCardapio().subscribe({
+  //     next: val => {
+  //       this.obj = val;
+  //     },
+  //     error: e => {
+  //       console.log(e);
+  //     }
+  //   });
 
-    this.alimentosCardapio = [
+    this.cardapios = [
       {
         id: 1,
             nome_refeicao: 'Almoco',
@@ -75,25 +79,25 @@ export class HomeComponent implements OnInit {
       {
         field: 'almoco',
         header: 'Almoço',
-        details: [this.alimentosCardapio[0], this.alimentosCardapio[1]],
+        details: [this.cardapios[0], this.cardapios[1]],
       },
       {
         field: 'janta',
         header: 'Janta',
-        details: [this.alimentosCardapio[2], this.alimentosCardapio[3]],
+        details: [this.cardapios[2], this.cardapios[3]],
       },
     ];
   }
 
   public openNew() {
-    this.alimentoCardapio = new Cardapio();
+    this.cardapio = new Cardapio();
     this.submitted = false;
-    this.productDialog = true;
+    this.cardapioDialog = true;
   }
 
   public editAlimentoCardapio(alimentoCardapio: Cardapio) {
-    this.alimentoCardapio = { ...alimentoCardapio };
-    this.productDialog = true;
+    this.cardapio = { ...alimentoCardapio };
+    this.cardapioDialog = true;
   }
 
   public deleteAlimentoCardapio(alimentoCardapio: Cardapio) {
@@ -102,17 +106,19 @@ export class HomeComponent implements OnInit {
         'Tem certeza que deseja excluir ' +
         alimentoCardapio.nome_alimento +
         '?',
-      header: 'Confirm',
+      header: 'Confirmar',
       icon: 'pi pi-exclamation-triangle',
+      acceptLabel: 'Sim',
+      rejectLabel: 'Não',
       accept: () => {
-        this.alimentosCardapio = this.alimentosCardapio.filter(
+        this.cardapios = this.cardapios.filter(
           (val) => val.id !== alimentoCardapio.id
         );
-        this.alimentoCardapio = new Cardapio();
+        this.cardapio = new Cardapio();
         this.messageService.add({
           severity: 'success',
           summary: 'Successful',
-          detail: 'Alimento excluido',
+          detail: 'Alimento excluído',
           life: 3000,
         });
       },
@@ -120,44 +126,44 @@ export class HomeComponent implements OnInit {
   }
 
   public hideDialog() {
-    this.productDialog = false;
+    this.cardapioDialog = false;
     this.submitted = false;
   }
 
   public saveAlimentoCardapio() {
     this.submitted = true;
 
-    if (this.alimentoCardapio.nome_alimento?.trim()) {
-      if (this.alimentoCardapio.id) {
-        this.alimentosCardapio[this.findIndexById(this.alimentoCardapio.id)] =
-          this.alimentoCardapio;
+    if (this.cardapio.nome_alimento?.trim()) {
+      if (this.cardapio.id) {
+        this.cardapios[this.findIndexById(this.cardapio.id)] =
+          this.cardapio;
         this.messageService.add({
           severity: 'success',
           summary: 'Successful',
-          detail: 'Product Updated',
+          detail: 'Alimento atualizado',
           life: 3000,
         });
       } else {
-        this.alimentoCardapio.id = this.createId();
-        this.alimentosCardapio.push(this.alimentoCardapio);
+        this.cardapio.id = this.createId();
+        this.cardapios.push(this.cardapio);
         this.messageService.add({
           severity: 'success',
           summary: 'Successful',
-          detail: 'Product Created',
+          detail: 'Alimento adicionado',
           life: 3000,
         });
       }
 
-      this.alimentosCardapio = [...this.alimentosCardapio];
-      this.productDialog = false;
-      this.alimentoCardapio = new Cardapio();
+      this.cardapios = [...this.cardapios];
+      this.cardapioDialog = false;
+      this.cardapio = new Cardapio();
     }
   }
 
   public findIndexById(id: number): number {
     let index = -1;
-    for (let i = 0; i < this.alimentosCardapio.length; i++) {
-      if (this.alimentosCardapio[i].id === id) {
+    for (let i = 0; i < this.cardapios.length; i++) {
+      if (this.cardapios[i].id === id) {
         index = i;
         break;
       }
