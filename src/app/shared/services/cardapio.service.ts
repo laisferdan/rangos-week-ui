@@ -8,13 +8,13 @@ import { Cardapio } from '../../core/models/cardapio.model';
 })
 export class CardapioService {
 
-  // constructor(private _httpClient: HttpClient) { }
+  constructor(private _httpClient: HttpClient) { }
 
-  // private url = "http://127.0.0.1:8000/Alimentos/";
+  private url = "http://127.0.0.1:8000/Alimentos/";
 
-  // public getCardapio() : Observable<any[]> {
-  //   return this._httpClient.get<any[]>(`${this.url}`)
-  // }
+  public getCardapio() : Observable<Cardapio[]> {
+    return this._httpClient.get<Cardapio[]>(`${this.url}`)
+  }
 
-  //public getCardapio(): {}
+  
 }

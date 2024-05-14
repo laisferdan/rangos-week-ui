@@ -1,0 +1,58 @@
+{
+  "Alimentos": [
+    {
+      "id": 1,
+      " nome_refeicao": "Almoco",
+      "nome_alimento": "Abobrinha Recheada",
+      "nome_categoria": "Pratos Unicos",
+      "quantidade": "4 porcoes",
+      "kcal": 300,
+      "dia_semana": "Sábado"
+    },
+    {
+      "id": 2,
+      " nome_refeicao": "Janta",
+      "nome_alimento": "Lasanha Berinjela",
+      "nome_categoria": "Pratos Unicos",
+      "quantidade": "4 porcoes",
+      "kcal": 300,
+      "dia_semana": "Sábado"
+    },
+    {
+      "id": 4,
+      "nome_refeicao": "Almoco",
+      "nome_alimento": "Arroz de Forno",
+      "nome_categoria": "Pratos Unicos",
+      "quantidade": "9 col. sopa",
+      "kcal": 300,
+      "dia_semana": "Sexta-feira"
+    },
+    {
+      "codigo": 58,
+      " nome_refeicao": "Janta",
+      "nome_alimento": "Arroz Carreteiro",
+      "nome_categoria": "Pratos Unicos",
+      "quantidade": "200g",
+      "kcal": 300,
+      "dia_semana": "Sexta-feira"
+  },
+  {
+    "id": 3,
+    "nome_refeicao": "Almoco",
+    "nome_alimento": "Batata Recheada",
+    "nome_categoria": "Pratos Unicos",
+    "quantidade": "254g",
+    "kcal": 300,
+    "dia_semana": "Quinta-feira"
+  },
+  {
+    "id": 3,
+    "nome_refeicao": "Janta",
+    "nome_alimento": "Tomate Recheado",
+    "nome_categoria": "Pratos Unicos",
+    "quantidade": "254g",
+    "kcal": 300,
+    "dia_semana": "Quinta-feira"
+  }
+  ]
+}
