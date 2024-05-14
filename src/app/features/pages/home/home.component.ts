@@ -19,7 +19,13 @@ export class HomeComponent implements OnInit {
   public selectedCardapios!: Cardapio[] | null;
   public selectedAlimento!: string | null;
   public submitted: boolean = false;
-  public obj: any;
+  public alimentoOptions: string[] = [
+    'Acelga Crua (picada)',
+    'Cogumelo Champignon',
+    'Cenoura em Fatias',
+    'Alface Americana',
+  ];
+
   constructor(
     private cardapioService: CardapioService,
     private messageService: MessageService,
@@ -27,66 +33,35 @@ export class HomeComponent implements OnInit {
   ) {}
 
   public ngOnInit() {
-  //   this.cardapioService.getCardapio().subscribe({
-  //     next: val => {
-  //       this.obj = val;
-  //     },
-  //     error: e => {
-  //       console.log(e);
-  //     }
-  //   });
+    this.cardapioService.getCardapio().subscribe({
+      next: (val) => {
+        this.cardapios = val;
 
-    this.cardapios = [
-      {
-        id: 1,
-            nome_refeicao: 'Almoco',
-            nome_alimento: 'Acelga Crua (picada)',
-            nome_categoria: 'Vegetais cru',
-            quantidade: '9 col. sopa',
-            kcal: 15,
-            dia_semana: 'Sábado'
-      },
-      {
-        id: 2,
-        nome_refeicao: 'Almoco',
-        nome_alimento: 'Cogumelo Champignon',
-        nome_categoria: 'Conservas',
-        quantidade: '9 un.',
-        kcal: 15,
-        dia_semana: 'Sábado',
-      },
-      {
-        id: 3,
-        nome_refeicao: 'Janta',
-        nome_alimento: 'Cenoura em Fatias',
-        nome_categoria: 'Vegetais cozidos',
-        quantidade: '7 fatias',
-        kcal: 15,
-        dia_semana: 'Sábado',
-      },
-      {
-        id: 4,
-        nome_refeicao: 'Janta',
-        nome_alimento: 'Alface Americana',
-        nome_categoria: 'Vegetais cru',
-        quantidade: '1 ½ xíc. chá',
-        kcal: 15,
-        dia_semana: 'Sábado',
-      }
-    ];
+        this.cols = [
+          {
+            field: 'almoco',
+            header: 'Almoço',
+            details: [],
+          },
+          {
+            field: 'janta',
+            header: 'Janta',
+            details: [],
+          },
+        ];
 
-    this.cols = [
-      {
-        field: 'almoco',
-        header: 'Almoço',
-        details: [this.cardapios[0], this.cardapios[1]],
+        this.cardapios.forEach((cardapio) => {
+          if (cardapio.nome_refeicao == 'Almoco') {
+            this.cols[0].details.push(cardapio);
+          } else if (cardapio.nome_refeicao == 'Janta') {
+            this.cols[1].details.push(cardapio);
+          }
+        });
       },
-      {
-        field: 'janta',
-        header: 'Janta',
-        details: [this.cardapios[2], this.cardapios[3]],
+      error: (e) => {
+        console.log(e);
       },
-    ];
+    });
   }
 
   public openNew() {
@@ -135,8 +110,7 @@ export class HomeComponent implements OnInit {
 
     if (this.cardapio.nome_alimento?.trim()) {
       if (this.cardapio.id) {
-        this.cardapios[this.findIndexById(this.cardapio.id)] =
-          this.cardapio;
+        this.cardapios[this.findIndexById(this.cardapio.id)] = this.cardapio;
         this.messageService.add({
           severity: 'success',
           summary: 'Successful',
