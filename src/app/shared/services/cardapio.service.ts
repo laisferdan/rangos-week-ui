@@ -10,7 +10,7 @@ export class CardapioService {
 
   constructor(private _httpClient: HttpClient) { }
 
-  private url = "http://127.0.0.1:8000/Alimentos/";
+  private url = "http://localhost:3000/Alimentos";
 
   public getCardapio() : Observable<Cardapio[]> {
     return this._httpClient.get<Cardapio[]>(`${this.url}`)

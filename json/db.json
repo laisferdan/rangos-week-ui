@@ -5,7 +5,7 @@
       " nome_refeicao": "Almoco",
       "nome_alimento": "Abobrinha Recheada",
       "nome_categoria": "Pratos Unicos",
-      "quantidade": "4 porcoes",
+      "quantidade": "250g",
       "kcal": 300,
       "dia_semana": "Sábado"
     },
@@ -14,7 +14,7 @@
       " nome_refeicao": "Janta",
       "nome_alimento": "Lasanha Berinjela",
       "nome_categoria": "Pratos Unicos",
-      "quantidade": "4 porcoes",
+      "quantidade": "250g",
       "kcal": 300,
       "dia_semana": "Sábado"
     },
@@ -23,7 +23,7 @@
       "nome_refeicao": "Almoco",
       "nome_alimento": "Arroz de Forno",
       "nome_categoria": "Pratos Unicos",
-      "quantidade": "9 col. sopa",
+      "quantidade": "250g",
       "kcal": 300,
       "dia_semana": "Sexta-feira"
     },
