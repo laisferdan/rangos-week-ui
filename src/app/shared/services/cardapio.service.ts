@@ -16,5 +16,7 @@ export class CardapioService {
     return this._httpClient.get<Cardapio[]>(`${this.url}`)
   }
 
-  
+  public updateCardapio(data: string) : Observable<Cardapio[]> {
+    return this._httpClient.post<Cardapio[]>(`${this.url}`, data)
+  }
 }
