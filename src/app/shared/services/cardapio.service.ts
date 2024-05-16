@@ -4,19 +4,23 @@ import { Observable } from 'rxjs';
 import { Cardapio } from '../../core/models/cardapio.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CardapioService {
+  constructor(private _httpClient: HttpClient) {}
 
-  constructor(private _httpClient: HttpClient) { }
+  private urlAlimentos = 'http://localhost:3000/Alimentos';
+  private urlAlimentoOptions = 'http://localhost:3000/AlimentoOptions';
 
-  private url = "http://localhost:3000/Alimentos";
-
-  public getCardapio() : Observable<Cardapio[]> {
-    return this._httpClient.get<Cardapio[]>(`${this.url}`)
+  public getCardapio(): Observable<Cardapio[]> {
+    return this._httpClient.get<Cardapio[]>(`${this.urlAlimentos}`);
   }
 
-  public updateCardapio(data: string) : Observable<Cardapio[]> {
-    return this._httpClient.post<Cardapio[]>(`${this.url}`, data)
+  public updateCardapio(data: Cardapio): Observable<Cardapio[]> {
+    return this._httpClient.post<Cardapio[]>(`${this.urlAlimentos}`, data);
+  }
+
+  public getAlimentoOptions(): Observable<Cardapio[]> {
+    return this._httpClient.get<Cardapio[]>(`${this.urlAlimentoOptions}`);
   }
 }

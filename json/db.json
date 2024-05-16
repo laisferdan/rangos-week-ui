@@ -4,7 +4,7 @@
       "id": 1,
       "nome_refeicao": "Almoco",
       "nome_alimento": "Abobrinha Recheada",
-      "nome_categoria": "Pratos Unicos",
+      "nome_categoria": "Pratos Únicos",
       "quantidade": "250g",
       "kcal": 300,
       "dia_semana": "Sábado"
@@ -13,7 +13,7 @@
       "id": 2,
       "nome_refeicao": "Janta",
       "nome_alimento": "Lasanha Berinjela",
-      "nome_categoria": "Pratos Unicos",
+      "nome_categoria": "Pratos Únicos",
       "quantidade": "250g",
       "kcal": 300,
       "dia_semana": "Sábado"
@@ -22,7 +22,7 @@
       "id": 3,
       "nome_refeicao": "Almoco",
       "nome_alimento": "Arroz de Forno",
-      "nome_categoria": "Pratos Unicos",
+      "nome_categoria": "Pratos Únicos",
       "quantidade": "250g",
       "kcal": 300,
       "dia_semana": "Sexta-feira"
@@ -31,7 +31,7 @@
       "codigo": 4,
       " nome_refeicao": "Janta",
       "nome_alimento": "Arroz Carreteiro",
-      "nome_categoria": "Pratos Unicos",
+      "nome_categoria": "Pratos Únicos",
       "quantidade": "200g",
       "kcal": 300,
       "dia_semana": "Sexta-feira"
@@ -40,7 +40,7 @@
       "id": 5,
       "nome_refeicao": "Almoco",
       "nome_alimento": "Batata Recheada",
-      "nome_categoria": "Pratos Unicos",
+      "nome_categoria": "Pratos Únicos",
       "quantidade": "254g",
       "kcal": 300,
       "dia_semana": "Quinta-feira"
@@ -49,10 +49,48 @@
       "id": 6,
       "nome_refeicao": "Janta",
       "nome_alimento": "Tomate Recheado",
-      "nome_categoria": "Pratos Unicos",
+      "nome_categoria": "Pratos Únicos",
       "quantidade": "254g",
       "kcal": 300,
       "dia_semana": "Quinta-feira"
+    }
+  ],
+  "AlimentoOptions": [
+    {
+      "id": 7,
+      "nome_refeicao": "",
+      "nome_alimento": "Acelga Crua (picada)",
+      "nome_categoria": "Hortaliças",
+      "quantidade": "100g",
+      "kcal": 23,
+      "dia_semana": "Sábado"
+    },
+    {
+      "id": 8,
+      "nome_refeicao": "Almoco",
+      "nome_alimento": "Cogumelo Champignon",
+      "nome_categoria": "Conservas",
+      "quantidade": "100g",
+      "kcal": 120,
+      "dia_semana": "Sábado"
+    },
+    {
+      "id": 9,
+      "nome_refeicao": "",
+      "nome_alimento": "Cenoura em Fatias",
+      "nome_categoria": "Hortaliças",
+      "quantidade": "100g",
+      "kcal": 40,
+      "dia_semana": "Sexta-feira"
+    },
+    {
+      "codigo": 10,
+      " nome_refeicao": "",
+      "nome_alimento": "Alface Americana",
+      "nome_categoria": "Hortaliças",
+      "quantidade": "100g",
+      "kcal": 17,
+      "dia_semana": "Sexta-feira"
     }
   ]
 }

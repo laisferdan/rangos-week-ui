@@ -19,12 +19,7 @@ export class HomeComponent implements OnInit {
   public selectedCardapios!: Cardapio[] | null;
   public selectedAlimento!: string | null;
   public submitted: boolean = false;
-  public alimentoOptions: string[] = [
-    'Acelga Crua (picada)',
-    'Cogumelo Champignon',
-    'Cenoura em Fatias',
-    'Alface Americana',
-  ];
+  public alimentoOptions: Cardapio[] = [];
 
   constructor(
     private cardapioService: CardapioService,
@@ -51,17 +46,30 @@ export class HomeComponent implements OnInit {
         ];
 
         this.cardapios.forEach((cardapio) => {
-          if (cardapio.nome_refeicao == 'Almoco') {
-            this.cols[0].details.push(cardapio);
-          } else if (cardapio.nome_refeicao == 'Janta') {
-            this.cols[1].details.push(cardapio);
-          }
+          this.checkNomeRefeicao(cardapio);
         });
       },
       error: (e) => {
         console.log(e);
       },
     });
+
+    this.cardapioService.getAlimentoOptions().subscribe({
+      next: (val) => {
+        this.alimentoOptions = val;
+      },
+      error: (e) => {
+        console.log(e);
+      },
+    });
+  }
+
+  private checkNomeRefeicao(cardapio: Cardapio) {
+    if (cardapio.nome_refeicao == 'Almoco') {
+      this.cols[0].details.push(cardapio);
+    } else if (cardapio.nome_refeicao == 'Janta') {
+      this.cols[1].details.push(cardapio);
+    }
   }
 
   public openNew() {
@@ -86,9 +94,12 @@ export class HomeComponent implements OnInit {
       acceptLabel: 'Sim',
       rejectLabel: 'Não',
       accept: () => {
-        this.cardapios = this.cardapios.filter(
-          (val) => val.id !== alimentoCardapio.id
-        );
+        this.cols.forEach((col) => {
+          col.details = col.details.filter(
+            (val) => val.id !== alimentoCardapio.id
+          );
+        });
+
         this.cardapio = new Cardapio();
         this.messageService.add({
           severity: 'success',
@@ -111,20 +122,24 @@ export class HomeComponent implements OnInit {
     if (this.cardapio.nome_alimento?.trim()) {
       if (this.cardapio.id) {
         this.cardapios[this.findIndexById(this.cardapio.id)] = this.cardapio;
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Successful',
-          detail: 'Alimento atualizado',
-          life: 3000,
+        this.cardapioService.updateCardapio(this.cardapio).subscribe(() => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Successful',
+            detail: 'Alimento atualizado',
+            life: 3000,
+          });
         });
       } else {
         this.cardapio.id = this.createId();
-        this.cardapios.push(this.cardapio);
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Successful',
-          detail: 'Alimento adicionado',
-          life: 3000,
+        this.checkNomeRefeicao(this.cardapio);
+        this.cardapioService.updateCardapio(this.cardapio).subscribe(() => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Successful',
+            detail: 'Alimento adicionado',
+            life: 3000,
+          });
         });
       }
 

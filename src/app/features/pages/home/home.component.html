@@ -118,7 +118,7 @@
           <div class="field">
             <label for="nome_alimento" class="labelItem">Nome do alimento</label>
             <p-dropdown
-              [options]="cardapios"
+              [options]="alimentoOptions"
               [(ngModel)]="selectedAlimento"
               optionLabel="nome_alimento"
               [filter]="true"
@@ -140,13 +140,6 @@
             </p-dropdown>
           </div>
         </div>
-
-        <div class="formgrid grid">
-          <div class="field col">
-            <label for="quantidade" class="labelItem">Quantidade</label>
-            <p-inputNumber id="quantidade" />
-          </div>
-        </div>
       </ng-template>
 
       <ng-template pTemplate="footer">
@@ -157,7 +150,7 @@
           [text]="true"
           (click)="hideDialog()"
         />
-        <p-button pRipple label="Salvar" icon="pi pi-check" [text]="true" />
+        <p-button (click)="saveAlimentoCardapio()" pRipple label="Salvar" icon="pi pi-check" [text]="true" />
       </ng-template>
     </p-dialog>
 
