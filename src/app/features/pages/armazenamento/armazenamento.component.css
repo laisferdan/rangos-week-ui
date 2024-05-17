@@ -44,6 +44,7 @@
   
 .main-content {
     padding-top: 0;
+
   }
   
   .main-content-list {
@@ -51,6 +52,7 @@
     grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
     gap: var(--spacing-gutter-large);
     padding: 02%;
+    
   }
   
   .recipe {
@@ -64,6 +66,7 @@
   
   .recipe img {
     max-width: 300%;
+   height: max-content;
   }
   
   .recipe-list-item {
