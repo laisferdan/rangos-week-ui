@@ -57,6 +57,60 @@
   ],
   "AlimentoOptions": [
     {
+      "id": 1,
+      "nome_refeicao": "Almoco",
+      "nome_alimento": "Abobrinha Recheada",
+      "nome_categoria": "Pratos Únicos",
+      "quantidade": "250g",
+      "kcal": 300,
+      "dia_semana": "Sexta-feira"
+    },
+    {
+      "id": 2,
+      "nome_refeicao": "Almoço",
+      "nome_alimento": "Lasanha Berinjela",
+      "nome_categoria": "Pratos Únicos",
+      "quantidade": "250g",
+      "kcal": 300,
+      "dia_semana": "Sexta-feira"
+    },
+    {
+      "id": 3,
+      "nome_refeicao": "Janta",
+      "nome_alimento": "Arroz de Forno",
+      "nome_categoria": "Pratos Únicos",
+      "quantidade": "250g",
+      "kcal": 300,
+      "dia_semana": "Sexta-feira"
+    },
+    {
+      "codigo": 4,
+      "nome_refeicao": "Janta",
+      "nome_alimento": "Arroz Carreteiro",
+      "nome_categoria": "Pratos Únicos",
+      "quantidade": "200g",
+      "kcal": 300,
+      "dia_semana": "Sexta-feira"
+    },
+    {
+      "id": 5,
+      "nome_refeicao": "Almoco",
+      "nome_alimento": "Batata Recheada",
+      "nome_categoria": "Pratos Únicos",
+      "quantidade": "254g",
+      "kcal": 300,
+      "dia_semana": "Quinta-feira"
+    },
+    {
+      "id": 6,
+      "nome_refeicao": "Janta",
+      "nome_alimento": "Tomate Recheado",
+      "nome_categoria": "Pratos Únicos",
+      "quantidade": "254g",
+      "kcal": 300,
+      "dia_semana": "Quinta-feira"
+    },
+    {
       "id": 7,
       "nome_refeicao": "",
       "nome_alimento": "Acelga Crua (picada)",
@@ -85,7 +139,7 @@
     },
     {
       "codigo": 10,
-      " nome_refeicao": "",
+      "nome_refeicao": "",
       "nome_alimento": "Alface Americana",
       "nome_categoria": "Hortaliças",
       "quantidade": "100g",

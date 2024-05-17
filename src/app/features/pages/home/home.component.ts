@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   public cardapios!: Cardapio[];
   public cardapio!: Cardapio;
   public selectedCardapios!: Cardapio[] | null;
-  public selectedAlimento!: string | null;
+  public selectedAlimento!: string;
   public submitted: boolean = false;
   public alimentoOptions: Cardapio[] = [];
 
@@ -57,6 +57,9 @@ export class HomeComponent implements OnInit {
     this.cardapioService.getAlimentoOptions().subscribe({
       next: (val) => {
         this.alimentoOptions = val;
+        this.alimentoOptions = val.sort((a, b) =>
+          a.nome_alimento.localeCompare(b.nome_alimento)
+        );
       },
       error: (e) => {
         console.log(e);
@@ -65,7 +68,10 @@ export class HomeComponent implements OnInit {
   }
 
   private checkNomeRefeicao(cardapio: Cardapio) {
-    if (cardapio.nome_refeicao == 'Almoco') {
+    if (
+      cardapio.nome_refeicao == 'Almoco' ||
+      cardapio.nome_refeicao == 'Almoço'
+    ) {
       this.cols[0].details.push(cardapio);
     } else if (cardapio.nome_refeicao == 'Janta') {
       this.cols[1].details.push(cardapio);
@@ -118,32 +124,55 @@ export class HomeComponent implements OnInit {
 
   public saveAlimentoCardapio() {
     this.submitted = true;
-
-    if (this.cardapio.nome_alimento?.trim()) {
+    if (
+      this.cardapio.nome_alimento &&
+      this.cardapio.nome_refeicao &&
+      this.cardapio.nome_alimento &&
+      this.cardapio.nome_categoria &&
+      this.cardapio.quantidade &&
+      this.cardapio.kcal &&
+      this.cardapio.dia_semana
+    ) {
       if (this.cardapio.id) {
-        this.cardapios[this.findIndexById(this.cardapio.id)] = this.cardapio;
-        this.cardapioService.updateCardapio(this.cardapio).subscribe(() => {
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Successful',
-            detail: 'Alimento atualizado',
-            life: 3000,
-          });
+        this.cardapioService.updateCardapio(this.cardapio).subscribe({
+          next: (val) => {
+            const index = this.findIndexById(this.cardapio.id);
+            this.cardapios[index] = this.cardapio;
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Successful',
+              detail: 'Alimento atualizado',
+              life: 3000,
+            });
+          },
+          error: (e) => {
+            console.log(e);
+          },
         });
       } else {
         this.cardapio.id = this.createId();
-        this.checkNomeRefeicao(this.cardapio);
-        this.cardapioService.updateCardapio(this.cardapio).subscribe(() => {
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Successful',
-            detail: 'Alimento adicionado',
-            life: 3000,
-          });
+        this.cardapioService.updateCardapio(this.cardapio).subscribe({
+          next: (val) => {
+            this.cardapios.push(this.cardapio);
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Successful',
+              detail: 'Alimento criado',
+              life: 3000,
+            });
+            this.onAlimentoChange({ value: this.selectedAlimento });
+          },
+          error: (e) => {
+            console.log(e);
+          },
         });
       }
-
+      this.cols[0].details = [];
+      this.cols[1].details = [];
       this.cardapios = [...this.cardapios];
+      this.cardapios.forEach((cardapio) => {
+        this.checkNomeRefeicao(cardapio);
+      });
       this.cardapioDialog = false;
       this.cardapio = new Cardapio();
     }
@@ -169,5 +198,17 @@ export class HomeComponent implements OnInit {
       id = id * 10 + chars.charCodeAt(Math.floor(Math.random() * chars.length));
     }
     return id;
+  }
+
+  public onAlimentoChange(event: any) {
+    const selectedAlimento = event.value;
+    if (selectedAlimento) {
+      this.cardapio.nome_alimento = selectedAlimento.nome_alimento;
+      this.cardapio.nome_refeicao = selectedAlimento.nome_refeicao;
+      this.cardapio.nome_categoria = selectedAlimento.nome_categoria;
+      this.cardapio.quantidade = selectedAlimento.quantidade;
+      this.cardapio.kcal = selectedAlimento.kcal;
+      this.cardapio.dia_semana = selectedAlimento.dia_semana;
+    }
   }
 }

@@ -8,7 +8,7 @@
       <p-table
         [value]="cols"
         dataKey="field"
-        [tableStyle]="{ 'min-width': '80rem' }"
+        [tableStyle]="{ 'min-width': '140rem' }"
       >
         <ng-template pTemplate="header">
           <tr class="">
@@ -108,7 +108,7 @@
     </p-toolbar>
     <p-dialog
       [(visible)]="cardapioDialog"
-      [style]="{ 'width': '40rem', 'height': '25rem' }"
+      [style]="{ width: '60rem', height: '50rem' }"
       header="Detalhes do Alimento"
       [modal]="true"
       styleClass="p-fluid"
@@ -116,7 +116,9 @@
       <ng-template pTemplate="content">
         <div class="formgrid grid">
           <div class="field">
-            <label for="nome_alimento" class="labelItem">Nome do alimento</label>
+            <label for="nome_alimento" class="labelItem"
+              >Nome do alimento</label
+            >
             <p-dropdown
               [options]="alimentoOptions"
               [(ngModel)]="selectedAlimento"
@@ -126,6 +128,7 @@
               [showClear]="true"
               placeholder="Selecione um alimento"
               appendTo="body"
+              (onChange)="onAlimentoChange($event)"
             >
               <ng-template pTemplate="selectedItem" let-selectedOption>
                 <div class="flex align-items-center gap-2">
@@ -139,6 +142,58 @@
               </ng-template>
             </p-dropdown>
           </div>
+          <div class="field col-12">
+            <label for="nome_refeicao" class="labelItem"
+              >Nome da Refeição</label
+            >
+            <input
+              id="nome_refeicao"
+              type="text"
+              pInputText
+              [(ngModel)]="cardapio.nome_refeicao"
+              [disabled]="true"
+            />
+          </div>
+          <div class="field col-12">
+            <label for="nome_categoria" class="labelItem">Categoria</label>
+            <input
+              id="nome_categoria"
+              type="text"
+              pInputText
+              [(ngModel)]="cardapio.nome_categoria"
+              [disabled]="true"
+            />
+          </div>
+          <div class="field col-12">
+            <label for="quantidade" class="labelItem">Quantidade (g)</label>
+            <input
+              id="quantidade"
+              type="text"
+              pInputText
+              [(ngModel)]="cardapio.quantidade"
+              [disabled]="true"
+            />
+          </div>
+          <div class="field col-12">
+            <label for="kcal" class="labelItem">Calorias (kcal)</label>
+            <input
+              id="kcal"
+              type="number"
+              pInputText
+              [(ngModel)]="cardapio.kcal"
+              [disabled]="true"
+            />
+          </div>
+          <div class="field col-12">
+            <label for="dia_semana" class="labelItem">Dia da Semana</label>
+            <input
+              id="dia_semana"
+              type="text"
+              pInputText
+              [(ngModel)]="cardapio.dia_semana"
+              [disabled]="true"
+            />
+          </div>
         </div>
       </ng-template>
 
@@ -150,7 +205,13 @@
           [text]="true"
           (click)="hideDialog()"
         />
-        <p-button (click)="saveAlimentoCardapio()" pRipple label="Salvar" icon="pi pi-check" [text]="true" />
+        <p-button
+          (click)="saveAlimentoCardapio()"
+          pRipple
+          label="Salvar"
+          icon="pi pi-check"
+          [text]="true"
+        />
       </ng-template>
     </p-dialog>
 
