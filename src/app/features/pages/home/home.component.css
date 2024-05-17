@@ -68,6 +68,9 @@
     font-family: var(--font-headings);
   }
 
+.card {
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
 .panel {
     margin-left: 1rem;
     margin-right: 1rem;
@@ -79,6 +82,7 @@
     color:var(--color-alert-dark);
     padding: 10px;
     margin-bottom: 10px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     
 }
 
