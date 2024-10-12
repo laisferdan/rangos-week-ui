@@ -135,15 +135,17 @@ export class HomeComponent implements OnInit {
     ) {
       if (this.cardapio.id) {
         this.cardapioService.updateCardapio(this.cardapio).subscribe({
-          next: (val) => {
+          next: () => {
             const index = this.findIndexById(this.cardapio.id);
             this.cardapios[index] = this.cardapio;
+            this.updateCols();
             this.messageService.add({
               severity: 'success',
               summary: 'Successful',
               detail: 'Alimento atualizado',
               life: 3000,
             });
+            this.onAlimentoChange({ value: this.selectedAlimento });
           },
           error: (e) => {
             console.log(e);
@@ -152,12 +154,13 @@ export class HomeComponent implements OnInit {
       } else {
         this.cardapio.id = this.createId();
         this.cardapioService.updateCardapio(this.cardapio).subscribe({
-          next: (val) => {
+          next: () => {
             this.cardapios.push(this.cardapio);
+            this.updateCols();
             this.messageService.add({
               severity: 'success',
               summary: 'Successful',
-              detail: 'Alimento criado',
+              detail: 'Alimento adicionado',
               life: 3000,
             });
             this.onAlimentoChange({ value: this.selectedAlimento });
@@ -167,14 +170,10 @@ export class HomeComponent implements OnInit {
           },
         });
       }
-      this.cols[0].details = [];
-      this.cols[1].details = [];
-      this.cardapios = [...this.cardapios];
-      this.cardapios.forEach((cardapio) => {
-        this.checkNomeRefeicao(cardapio);
-      });
+
       this.cardapioDialog = false;
       this.cardapio = new Cardapio();
+      window.location.reload();
     }
   }
 
@@ -198,6 +197,14 @@ export class HomeComponent implements OnInit {
       id = id * 10 + chars.charCodeAt(Math.floor(Math.random() * chars.length));
     }
     return id;
+  }
+
+  private updateCols() {
+    this.cols[0].details = [];
+    this.cols[1].details = [];
+    this.cardapios.forEach((cardapio) => {
+      this.checkNomeRefeicao(cardapio);
+    });
   }
 
   public onAlimentoChange(event: any) {

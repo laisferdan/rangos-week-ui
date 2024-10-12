@@ -18,6 +18,11 @@ export class MenuComponent implements OnInit {
         style: {'margin-left': 'auto'}
       },
       {
+        label: 'Perfil',
+        routerLink: '/perfil',
+        icon: 'pi pi-fw pi-user',
+      },
+      {
         label: 'Modos de armazenamento',
         routerLink: '/armazenamento',
         icon: 'pi pi-fw pi-box',
@@ -25,7 +30,7 @@ export class MenuComponent implements OnInit {
       {
         label: 'Sobre nós',
         routerLink: '/sobre-nos',
-        icon: 'pi pi-fw pi-user',
+        icon: 'pi pi-fw pi-info-circle',
       },
     ];
   }

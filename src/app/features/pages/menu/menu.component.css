@@ -1,19 +1,18 @@
 ::ng-deep .p-menubar {
-    background: rgb(239,244,214);
-    background: linear-gradient(90deg, rgba(239,244,214,1) 0%, rgba(204,235,192,1) 45%, rgba(239,244,214,1) 100%);
+    background: linear-gradient(90deg, rgb(225, 236, 174) 0%, #ADC865 70%);
     font-size: 1.2rem;
-    
 }
 
 ::ng-deep .p-menuitem:hover {
+    background-color: #02542D;
     border-radius: 25px;
-    
 }
 
 ::ng-deep .p-menuitem-text {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: "Oleo Script", system-ui;
     transform: scale(1.01);
     animation-delay: initial;
+    color: #02542D;
 }
 
 :host ::ng-deep p-menubarsub {
@@ -21,7 +20,15 @@
 }
 
 .img {
-    height: 140px;
-    width: 150px;
-    padding: 02%;
+    width: 40%;
+    padding: 2%;
+}
+
+.menubar-items {
+    color: #02542D;
+}
+
+.img-leaf {
+    width: 6%;
+    padding-bottom: 7%;
 }

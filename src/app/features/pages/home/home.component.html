@@ -1,3 +1,4 @@
+<img src="./../../../../assets/images/sugestao-cardapio.png" alt="Sugestão de cardápio diário" class="sugestao-cardapio">
 <div class="panel">
   <p class="panel-title">
     {{ currentDate | date : "EEEE, dd/MM/yyyy" | capitalizeFirstLetter }}
@@ -8,7 +9,6 @@
       <p-table
         [value]="cols"
         dataKey="field"
-        [tableStyle]="{ 'min-width': '140rem' }"
       >
         <ng-template pTemplate="header">
           <tr class="">

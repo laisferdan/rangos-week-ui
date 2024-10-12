@@ -53,6 +53,15 @@
       "quantidade": "254g",
       "kcal": 300,
       "dia_semana": "Quinta-feira"
+    },
+    {
+      "id": 777998,
+      "nome_alimento": "Lasanha Berinjela",
+      "nome_refeicao": "Almoço",
+      "nome_categoria": "Pratos Únicos",
+      "quantidade": "250g",
+      "kcal": 300,
+      "dia_semana": "Sexta-feira"
     }
   ],
   "AlimentoOptions": [
