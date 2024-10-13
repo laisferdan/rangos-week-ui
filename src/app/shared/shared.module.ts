@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PrimengUiControlsModule } from '../ui-controls/primeng-ui-controls/primeng-ui-controls.module';
+import { PrimengUiControlsModule } from '../ui-controls/primeng-ui-controls.module';
 import { MenuComponent } from '../features/pages/menu/menu.component';
 import { HomeComponent } from '../features/pages/home/home.component';
 import { CapitalizeFirstLetterPipe } from './pipes/capitalize-first-letter.pipe';
@@ -13,6 +13,10 @@ import { CapitalizeFirstLetterPipe } from './pipes/capitalize-first-letter.pipe'
     MenuComponent,
     HomeComponent,
   ],
-  imports: [CommonModule, PrimengUiControlsModule, CapitalizeFirstLetterPipe],
+  imports: [
+    CommonModule, 
+    PrimengUiControlsModule, 
+    CapitalizeFirstLetterPipe
+  ],
 })
 export class SharedModule {}
