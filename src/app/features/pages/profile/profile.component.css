@@ -1,0 +1,132 @@
+.profile-container {
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.profile-photo-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ADC865;
+}
+
+.profile-first-name {
+    font-family: "Oleo Script", system-ui;
+    font-size: 24px;
+    color:#02542D;
+    margin-top: 10px;
+}
+
+.profile-details {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profile-details-label {
+    font-size: 20px;
+    font-weight: 500;
+    margin: 10px 0;
+    font-family: "Oleo Script", system-ui; 
+}
+
+.profile-details-value {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 10px 0;
+    font-family: 'Albert Sans', sans-serif;
+}
+
+.password-change {
+    margin-top: 20px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.password-change h3 {
+    font-family: "Oleo Script", system-ui;
+    color: #02542D;
+}
+
+.password-change form {
+    display: flex;
+    flex-direction: column;
+}
+
+.password-change form div {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.password-change form label {
+    margin-bottom: 5px;
+    font-family: 'Albert Sans', sans-serif;
+    color: #333;
+}
+
+.password-change form input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    font-family: 'Albert Sans', sans-serif;
+    font-size: 16px;
+}
+
+.password-change form input:focus {
+    border-color: #9cba49;
+    outline: none;
+    box-shadow: 0 0 5px rgba(173, 200, 101, 0.5);
+}
+
+.password-change .btn {
+    padding: 10px;
+    background-color: #ADC865;
+    color: #E25B45;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: "Oleo Script", system-ui;
+    font-size: 18px;
+}
+
+.password-change .btn:hover {
+    background-color: #9cba49;
+}
+
+.success-message {
+    color: green;
+    font-family: 'Albert Sans', sans-serif;
+}
+
+.error-message {
+    color: red;
+    font-family: 'Albert Sans', sans-serif;
+}
+
+.btn-secondary {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #ADC865;
+    color: #E25B45;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: "Oleo Script", system-ui;
+    font-size: 16px;
+}
+
+.btn-secondary:hover {
+    background-color: #9cba49;
+}

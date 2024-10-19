@@ -1,0 +1,41 @@
+<div class="profile-container">
+    <div class="profile-photo-container">
+      <img src="./../../../../assets/images/profile-picture.png" alt="User Photo" class="profile-photo">
+      <p class="profile-first-name">{{ user.firstName }}</p>
+    </div>
+    <div class="profile-details">
+      <p class="profile-details-text">
+        <span class="profile-details-label">Nome: </span>
+        <span class="profile-details-value">{{ user.name }}</span>
+      </p>
+      <p class="profile-details-text">
+        <span class="profile-details-label">Data de Nascimento: </span>
+        <span class="profile-details-value">{{ user.dateOfBirth }}</span>
+      </p>
+      <p class="profile-details-text">
+        <span class="profile-details-label">Email: </span>
+        <span class="profile-details-value">{{ user.email }}</span>
+      </p>
+    </div>
+  
+    <button (click)="toggleChangePassword()" class="btn btn-secondary">
+      Mudar senha
+    </button>
+  
+    <div class="password-change" *ngIf="showChangePassword">
+      <h3>Mudar senha</h3>
+      <form (submit)="changePassword()">
+        <div>
+          <label for="newPassword">Nova senha</label>
+          <input type="password" id="newPassword" [(ngModel)]="newPassword" name="newPassword" required>
+        </div>
+        <div>
+          <label for="confirmPassword">Confirmação da nova senha</label>
+          <input type="password" id="confirmPassword" [(ngModel)]="confirmPassword" name="confirmPassword" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+      </form>
+      <p *ngIf="passwordChangeSuccess" class="success-message">Senha alterada com sucesso!</p>
+      <p *ngIf="passwordChangeError" class="error-message">{{ passwordChangeError }}</p>
+    </div>
+  </div>
