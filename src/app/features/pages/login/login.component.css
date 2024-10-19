@@ -17,9 +17,10 @@
 }
   
 .login-left h2 {
+    color: #02542D;
     font-size: 2rem;
     margin-bottom: 1rem;
-    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+    font-family: "Oleo Script", system-ui;
 }
   
 .login-left p {
@@ -56,15 +57,20 @@
     font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
 }
 
-.login-left .btn a {
-    color: #f5f5f5;
-    text-decoration: none; 
+.login-left .btn-signin {
+    padding: 10px;
+    background-color: #ADC865;
+    color: #E25B45;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: "Oleo Script", system-ui;
+    font-size: 18px;
 }
 
-.login-left .btn-signin {
-    background-color: #4a90e2;
-    color: white;
-    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+
+.login-left .btn-signin:hover {
+    background-color: #9cba49;
 }
   
 .login-right {

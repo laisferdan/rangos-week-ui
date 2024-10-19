@@ -10,11 +10,15 @@ import { AuthService } from '../../../shared/services/auth.service';
 export class MenuComponent implements OnInit {
   items: MenuItem[] | undefined;
   itemsLogin: MenuItem[] | undefined;
-  isLoggedIn = this.authService.checkLoginStatus(); 
+  isLoggedIn: boolean = false;
 
-  constructor(private readonly authService: AuthService) {} 
+  constructor(private readonly authService: AuthService) {}
 
   ngOnInit() {
+    this.authService.isLoggedIn$.subscribe((status) => {
+      this.isLoggedIn = status;
+    });
+
     this.items = [
       {
         label: 'Página inicial',
