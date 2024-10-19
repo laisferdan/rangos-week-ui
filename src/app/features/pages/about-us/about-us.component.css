@@ -1,0 +1,96 @@
+.main-content {
+  padding: 2rem;
+  text-align: center;
+}
+
+.main-content h1 {
+  font-family: "Oleo Script", system-ui;
+  color: #13141f;
+  margin-bottom: 2rem;
+}
+
+.introduction {
+  text-align: left;
+  margin-bottom: 2rem;
+  background: #f9f9f9;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 2rem auto;
+}
+
+h2 {
+  font-family: "Oleo Script", system-ui;
+  color: #13141f;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.introduction p {
+  font-family: 'Albert Sans', sans-serif;
+  color: #444;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.main-content-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.team-member-card {
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 300px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  padding-top: 15px;
+  padding-right: 10px;
+}
+
+.team-member-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.team-member-photo img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #9cba49;
+  margin-bottom: 15px;
+}
+
+.team-member-info {
+  padding: 1rem;
+}
+
+.team-member-info h3 {
+  font-family: 'Albert Sans', sans-serif;
+  color: #13141f;
+  margin: 0.5rem 0;
+}
+
+.team-member-info .role {
+  font-family: 'Roboto', sans-serif;
+  color: #444;
+  margin: 0.5rem 0;
+}
+
+.team-member-info .links a {
+  font-family: 'Albert Sans', sans-serif;
+  color: #9cba49;
+  text-decoration: none;
+  margin: 0 0.5rem;
+  transition: color 0.3s;
+}
+
+.team-member-info .links a:hover {
+  color: #9cba49;
+}
