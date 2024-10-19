@@ -1,0 +1,91 @@
+.main-content {
+  position: relative;
+  padding: 2rem;
+  text-align: center;
+  min-height: 100vh; 
+  background-image: url('./../../../../assets/images/storage-bg.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.main-content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.7); 
+  z-index: -1; 
+}
+
+.main-content h1 {
+  font-family: "Oleo Script", system-ui;
+  color: #02542D;
+  margin-bottom: 2rem;
+  background-color: rgba(255, 255, 255, 0.837); 
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+}
+
+.main-content-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.recipe {
+  background: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.recipe:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.recipe-cover img {
+  width: 100%;
+  max-height: 16rem;
+  border-bottom: 2px solid #9cba49;
+}
+
+.recipe-title-container {
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.recipe-title {
+  font-family: "Oleo Script", system-ui;
+  color: #02542D;
+  margin: 0;
+}
+
+.recipe-author {
+  padding: 1rem;
+}
+
+.recipe-meta-container {
+  background: #f0f0f0;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.recipe-meta-text {
+  font-family: 'Roboto', sans-serif;
+  color: #444;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.recipe-texto-dicas {
+  font-style: italic;
+  margin-bottom: 1rem;
+}
