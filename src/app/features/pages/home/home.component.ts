@@ -7,7 +7,7 @@ import { Cardapio } from '../../../core/models/cardapio.model';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css',
+  styleUrls: ['./home.component.css'],
   providers: [MessageService, ConfirmationService],
 })
 export class HomeComponent implements OnInit {
@@ -20,6 +20,9 @@ export class HomeComponent implements OnInit {
   public selectedAlimento!: string;
   public submitted: boolean = false;
   public alimentoOptions: Cardapio[] = [];
+  public refeicoes = ['Café da manhã', 'Almoço', 'Jantar'];
+  public diasSemana = [ 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado', 'Domingo' ];
+  public totalKcal: number = 0;
 
   constructor(
     private cardapioService: CardapioService,
@@ -34,20 +37,34 @@ export class HomeComponent implements OnInit {
 
         this.cols = [
           {
+            field: 'cafe',
+            header: 'Café da manhã',
+            details: [],
+            totalKcal: 0
+          },
+          {
             field: 'almoco',
             header: 'Almoço',
             details: [],
+            totalKcal: 0
           },
           {
-            field: 'janta',
-            header: 'Janta',
+            field: 'Jantar',
+            header: 'Jantar',
             details: [],
+            totalKcal: 0
           },
         ];
 
         this.cardapios.forEach((cardapio) => {
           this.checkNomeRefeicao(cardapio);
         });
+
+        this.cols.forEach((col) => {
+          col.totalKcal = this.calculateTotalKcal(col.details);
+        });
+
+        this.totalKcal = this.cols.reduce((sum, col) => sum + col.totalKcal, 0);
       },
       error: (e) => {
         console.log(e);
@@ -68,14 +85,21 @@ export class HomeComponent implements OnInit {
   }
 
   private checkNomeRefeicao(cardapio: Cardapio) {
-    if (
-      cardapio.nome_refeicao == 'Almoco' ||
-      cardapio.nome_refeicao == 'Almoço'
+    if (cardapio.nome_refeicao === 'Café da manhã' ||
+      cardapio.nome_refeicao === 'Cafe'
     ) {
       this.cols[0].details.push(cardapio);
-    } else if (cardapio.nome_refeicao == 'Janta') {
+    } else if (cardapio.nome_refeicao === 'Almoco' ||
+      cardapio.nome_refeicao === 'Almoço'
+    ) {
       this.cols[1].details.push(cardapio);
+    } else if (cardapio.nome_refeicao === 'Jantar') {
+      this.cols[2].details.push(cardapio);
     }
+  }
+
+  private calculateTotalKcal(details: Cardapio[]): number {
+    return details.reduce((sum, detail) => sum + detail.kcal, 0);
   }
 
   public openNew() {
@@ -113,6 +137,12 @@ export class HomeComponent implements OnInit {
           detail: 'Alimento excluído',
           life: 3000,
         });
+
+        this.cols.forEach((col) => {
+          col.totalKcal = this.calculateTotalKcal(col.details);
+        });
+
+        this.totalKcal = this.cols.reduce((sum, col) => sum + col.totalKcal, 0);
       },
     });
   }
@@ -133,6 +163,7 @@ export class HomeComponent implements OnInit {
       this.cardapio.kcal &&
       this.cardapio.dia_semana
     ) {
+
       if (this.cardapio.id) {
         this.cardapioService.updateCardapio(this.cardapio).subscribe({
           next: () => {
@@ -200,10 +231,13 @@ export class HomeComponent implements OnInit {
   }
 
   private updateCols() {
-    this.cols[0].details = [];
-    this.cols[1].details = [];
+    this.cols.forEach(col => col.details = []);
     this.cardapios.forEach((cardapio) => {
       this.checkNomeRefeicao(cardapio);
+    });
+
+    this.cols.forEach((col) => {
+      col.totalKcal = this.calculateTotalKcal(col.details);
     });
   }
 

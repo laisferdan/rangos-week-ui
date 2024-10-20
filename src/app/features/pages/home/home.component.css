@@ -1,34 +1,144 @@
+body {
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 0;
+}
+
 .panel {
-  margin-left: 1rem;
-  margin-right: 1rem;
-  margin-top: 2rem;
+  margin: 2rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .panel-title {
   font-size: 1.5rem;
-  color: var(--color-alert-dark);
+  color: #02542d;
   padding: 10px;
   margin-bottom: 10px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: "Oleo Script", system-ui;
+}
 
+.header-title {
+  font-family: "Oleo Script", system-ui;
+  color: #02542d;
+  font-size: 1.2rem;
+}
+
+.header-subtitle {
+  font-family: 'Albert Sans', sans-serif;
+  color: #02542d;
+  font-size: 1rem;
+}
+
+.img-leaf {
+  padding-left: 10px;
+  width: 30px;
+  height: auto;
 }
 
 .field {
-  margin-bottom: 35px;
+  margin-bottom: 1.5rem;
 }
 
 .labelItem {
-  display: flex;
-  flex-direction: row;
-  width: 400px;
-  margin-bottom: 8px;
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
 }
 
 .editDeleteButtons {
-  margin-right: 10px;
-  margin-left: 22px;
+  margin-left: 1.5rem;
 }
 
 .sugestao-cardapio {
   width: 100%;
+  border-radius: 8px;
+}
+
+.p-toolbar {
+  margin-bottom: 2rem;
+}
+
+.p-table {
+  width: 100%;
+  margin: 0 auto; 
+}
+
+.p-table th,
+.p-table td {
+  padding: 1rem;
+  text-align: left;
+}
+
+.p-table th {
+  background: #f0f0f0;
+}
+
+.p-table td {
+  background: #fff;
+}
+
+.p-dialog .p-dialog-content {
+  padding: 2rem;
+}
+
+.p-dialog .p-dialog-footer {
+  padding: 1rem;
+  text-align: right;
+}
+
+.p-button {
+  margin-right: 0.5rem;
+}
+
+.tables-container {
+  display: flex;
+  flex-direction: column; 
+  gap: 2rem;
+  width: 100%;
+}
+
+.table-wrapper {
+  flex: 1;
+}
+
+.table-title {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #02542d;
+  font-family: "Oleo Script", system-ui;
+}
+
+.add-alimento-button {
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+  background: #ADC762;
+  border-color: #ADC762;
+}
+
+.p-button-success {
+  background: #ADC762;
+  border-color: #ADC762;
+}
+
+.p-button-warning {
+  background: #E25B45;
+  border-color: #E25B45;
+}
+
+th, td {
+  font-family: 'Albert Sans', sans-serif;
+  font-size: 0.98rem;
+}
+
+td {
+  font-size: 0.95rem;
 }
