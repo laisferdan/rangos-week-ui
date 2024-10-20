@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { AuthService } from '../../../shared/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -11,8 +12,7 @@ export class MenuComponent implements OnInit {
   items: MenuItem[] | undefined;
   itemsLogin: MenuItem[] | undefined;
   isLoggedIn: boolean = false;
-
-  constructor(private readonly authService: AuthService) {}
+  constructor(private readonly authService: AuthService, private readonly router: Router) {}
 
   ngOnInit() {
     this.authService.isLoggedIn$.subscribe((status) => {
@@ -41,17 +41,10 @@ export class MenuComponent implements OnInit {
         routerLink: '/sobre-nos',
         icon: 'pi pi-fw pi-info-circle',
       },
-    ];
+    ];    
+  }
 
-    this.itemsLogin = [
-      {
-        label: 'Login',
-        routerLink: '/login',
-        style: {
-          'background-color': '#FFB357', 
-          'border-radius' : '10px'
-        }
-      },
-    ];
+  navigateToLogin(): void {
+    this.router.navigate(['/login']);
   }
 }

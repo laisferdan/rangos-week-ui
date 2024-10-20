@@ -1,16 +1,18 @@
 <header class="menu">
-    <p-menubar *ngIf="!isLoggedIn" [model]="itemsLogin" class="menubar-items">
-        <ng-template pTemplate="start">
-          <img alt="Rango's WEEK logo" src="./../../../../assets/images/rangos-week-logo.png" class="img" />
-          <img alt="Rango's WEEK logo" src="./../../../../assets/images/leaf-logo.png" class="img-leaf"/>
-        </ng-template>
-      </p-menubar>
-    
-    <p-menubar *ngIf="isLoggedIn" [model]="items" class="menubar-items">
-        <ng-template pTemplate="start">
-          <img alt="Rango's WEEK logo" src="./../../../../assets/images/rangos-week-logo.png" class="img" />
-          <img alt="Rango's WEEK logo" src="./../../../../assets/images/leaf-logo.png" class="img-leaf"/>
-        </ng-template>
-    </p-menubar>
-</header>
+  <p-menubar *ngIf="!isLoggedIn" class="menubar-items">
+    <ng-template pTemplate="start">
+      <img alt="Rango's WEEK logo" src="./../../../../assets/images/rangos-week-logo.png" class="img" />
+      <img alt="Rango's WEEK logo" src="./../../../../assets/images/leaf-logo.png" class="img-leaf"/>
+    </ng-template>
+    <ng-template class="login" pTemplate="end">
+      <button pButton class="p-button-rounded p-button-text login-button" (click)="navigateToLogin()">Login</button>
+    </ng-template>
+  </p-menubar>
 
+  <p-menubar *ngIf="isLoggedIn" [model]="items" class="menubar-items">
+    <ng-template pTemplate="start">
+      <img alt="Rango's WEEK logo" src="./../../../../assets/images/rangos-week-logo.png" class="img" />
+      <img alt="Rango's WEEK logo" src="./../../../../assets/images/leaf-logo.png" class="img-leaf"/>
+    </ng-template>
+  </p-menubar>
+</header>

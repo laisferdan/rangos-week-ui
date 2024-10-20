@@ -32,3 +32,23 @@
     width: 6%;
     padding-bottom: 7%;
 }
+
+.login-button {
+    margin-left: auto;
+    margin-right: 20px;
+    background: none;
+    border: none;
+    color: #02542D;
+    font-size: 1.5rem;
+    font-family: "Oleo Script", system-ui;
+    background-color: #FFB357;
+    border-radius : 10px;
+}
+
+.login-button:hover {
+    background-color: #f8a53f;
+}
+
+.login-button:focus {
+    box-shadow: none;
+}
