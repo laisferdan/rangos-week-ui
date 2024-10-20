@@ -13,6 +13,6 @@ export const routes: Routes = [
     { path: 'perfil', component: ProfileComponent },
     { path: 'armazenamento', component: StorageComponent},
     { path: 'sobre-nos', component: AboutUsComponent},
-    { path: '', redirectTo: 'home', pathMatch: 'full' }
+    { path: '', redirectTo: 'login', pathMatch: 'full' }
    
 ];
