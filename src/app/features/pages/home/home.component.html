@@ -19,8 +19,8 @@
     <p-toolbar styleClass="mb-4 gap-2">
       <div class="tables-container" >
         <div class="table-wrapper" >
-          <p-table [value]="cols" dataKey="field" >
-            <ng-template pTemplate="header" >
+          <p-table [value]="cols" dataKey="field">
+            <ng-template pTemplate="header">
               <tr>
                 <th scope="col" style="width: 5rem"></th>
                 <th scope="col" class="header-title">Refeições (Total kcal: {{ totalKcal }})</th>
@@ -64,16 +64,6 @@
                           <th scope="col" pSortableColumn="nome_categoria" style="min-width: 10rem">
                             Categoria
                             <p-sortIcon field="nome_categoria"></p-sortIcon>
-                          </th>
-                          <th scope="col">
-                            <button
-                              pButton
-                              pRipple
-                              label="Adicionar alimento"
-                              icon="pi pi-plus"
-                              class="p-button-success mr-2"
-                              (click)="openNew()"
-                            ></button>
                           </th>
                           <th scope="col"></th>
                         </tr>
@@ -150,8 +140,7 @@
             <label for="nome_refeicao" class="labelItem">Nome da Refeição</label>
             <p-dropdown
               [options]="refeicoes"
-              [(ngModel)]="cardapio.nome_refeicao"
-              optionLabel="label"
+              (ngModel)="cardapio.nome_refeicao"
               placeholder="Selecione uma refeição"
               appendTo="body"
             ></p-dropdown>
@@ -190,8 +179,7 @@
             <label for="dia_semana" class="labelItem">Dia da Semana</label>
             <p-dropdown
               [options]="diasSemana"
-              [(ngModel)]="cardapio.dia_semana"
-              optionLabel="label"
+              (ngModel)="cardapio.dia_semana"
               placeholder="Selecione um dia"
               appendTo="body"
             ></p-dropdown>

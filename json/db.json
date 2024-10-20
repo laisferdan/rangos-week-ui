@@ -64,21 +64,12 @@
       "dia_semana": "Domingo"
     },
     {
-      "id": 653082,
-      "nome_alimento": "Acelga Crua (picada)",
+      "id": 1269591,
+      "nome_alimento": "Café",
       "nome_refeicao": "Café da manhã",
-      "nome_categoria": "Hortaliças",
-      "quantidade": "100g",
-      "kcal": 23,
-      "dia_semana": "Domingo"
-    },
-    {
-      "id": 815785,
-      "nome_alimento": "Abobrinha Recheada",
-      "nome_refeicao": "Café da manhã",
-      "nome_categoria": "Pratos Únicos",
-      "quantidade": "250g",
-      "kcal": 300,
+      "nome_categoria": "Bebidas",
+      "quantidade": "10g",
+      "kcal": 35.3,
       "dia_semana": "Domingo"
     }
   ],
@@ -171,6 +162,15 @@
       "nome_categoria": "Hortaliças",
       "quantidade": "100g",
       "kcal": 17,
+      "dia_semana": "Domingo"
+    },
+    {
+      "codigo": 11,
+      "nome_refeicao": "Café da manhã",
+      "nome_alimento": "Café",
+      "nome_categoria": "Bebidas",
+      "quantidade": "10g",
+      "kcal": 35.3,
       "dia_semana": "Domingo"
     }
   ]
