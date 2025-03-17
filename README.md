@@ -28,7 +28,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## API Json-server
 
-´´´json-server json/db.json´´´
+`json-server json/db.json`
 
 Or try:
-´´´npx json-server --watch db.json´´´
+`npx json-server --watch db.json`
