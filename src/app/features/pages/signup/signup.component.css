@@ -19,43 +19,11 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
-.auth-footer {
-  text-align: center;
-  margin-top: 2rem;
-  color: #6c757d;
-}
-
-.auth-footer a {
-  color: #4CAF50;
-  text-decoration: none;
-  cursor: pointer;
-  font-weight: 500;
-}
-
-.auth-footer a:hover {
-  text-decoration: underline;
-}
-
-.login-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-}
-
-.login-card {
-  width: 100%;
-  max-width: 400px;
-  padding: 2rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
 .logo-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
+  margin-bottom: 2rem;
 }
 
 .logo {
@@ -65,22 +33,6 @@
 
 .leaf-logo {
   height: 40px;
-}
-
-.login-content {
-  text-align: center;
-  padding: 1rem;
-}
-
-.login-content h2 {
-  color: #2c3e50;
-  margin-bottom: 1rem;
-  font-size: 1.8rem;
-}
-
-.login-content p {
-  color: #6c757d;
-  margin-bottom: 2rem;
 }
 
 h2 {
@@ -134,4 +86,21 @@ h2 {
 :host ::ng-deep .p-button:hover {
   background-color: #45a049;
   border-color: #45a049;
+}
+
+.auth-footer {
+  text-align: center;
+  margin-top: 2rem;
+  color: #6c757d;
+}
+
+.auth-footer a {
+  color: #4CAF50;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.auth-footer a:hover {
+  text-decoration: underline;
 }

@@ -1,27 +1,54 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../../../shared/services/auth.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { ButtonModule } from 'primeng/button';
+import { CardModule } from 'primeng/card';
+import { InputTextModule } from 'primeng/inputtext';
+import { PasswordModule } from 'primeng/password';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../shared/services/auth.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ButtonModule,
+    CardModule,
+    InputTextModule,
+    PasswordModule
+  ],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  hasError: boolean = false;
+  email: string = '';
+  password: string = '';
+  errorMessage: string = '';
 
-  constructor(private readonly authService: AuthService, private readonly router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
-  public onLogin(event: Event) {
-    event.preventDefault();
-    console.log(this.authService.checkLoginStatus());  
-    if (!this.authService.checkLoginStatus()) {
-      this.authService.login();
-      this.router.navigate(['/home']);
-    } else {
-      this.authService.logout();
+  onLogin() {
+    if (!this.email || !this.password) {
+      this.errorMessage = 'Por favor, preencha todos os campos';
+      return;
     }
+
+    this.authService.login(this.email).subscribe({
+      next: () => {
+        this.router.navigate(['/home']);
+      },
+      error: (error) => {
+        this.errorMessage = error.message;
+      }
+    });
+  }
+
+  navigateToSignup() {
+    this.router.navigate(['/signup']);
   }
 }

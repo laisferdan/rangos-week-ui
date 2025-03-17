@@ -5,123 +5,347 @@ body {
 }
 
 .panel {
-  margin: 2rem;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 2rem;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  margin: 2rem;
 }
 
 .panel-header {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
 }
 
-.panel-title {
+.date-display {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.date-text {
   font-size: 1.5rem;
-  color: #02542d;
-  padding: 10px;
-  margin-bottom: 10px;
-  font-family: "Oleo Script", system-ui;
+  font-weight: 600;
+  color: #495057;
+  margin: 0 0.5rem;
 }
 
-.header-title {
-  font-family: "Oleo Script", system-ui;
-  color: #02542d;
-  font-size: 1.2rem;
+.nav-button {
+  color: #4caf50 !important;
+  width: 2.5rem !important;
+  height: 2.5rem !important;
 }
 
-.header-subtitle {
-  font-family: 'Albert Sans', sans-serif;
-  color: #02542d;
+.nav-button:hover {
+  background-color: #e8f5e9 !important;
+}
+
+.nav-button:focus {
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2) !important;
+}
+
+.calendar-container {
+  position: relative;
+  margin: 0 0.5rem;
+}
+
+.calendar-container ::ng-deep .p-calendar {
+  margin: 0;
+}
+
+.calendar-container ::ng-deep .p-calendar .p-button {
+  background: #4caf50;
+  border: 1px solid #4caf50;
+  color: #ffffff;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calendar-container ::ng-deep .p-calendar .p-button:hover {
+  background: #388e3c;
+  border-color: #388e3c;
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.calendar-container ::ng-deep .p-calendar .p-button:focus {
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
+.calendar-container ::ng-deep .p-datepicker {
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem;
+  background: white;
+  border: 1px solid #ced4da;
+  margin-top: 5px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+
+.calendar-container ::ng-deep .p-datepicker .p-datepicker-header {
+  padding: 0.5rem;
+  border-bottom: 1px solid #dee2e6;
+  background: #f8f9fa;
+}
+
+.calendar-container ::ng-deep .p-datepicker .p-datepicker-header .p-datepicker-prev,
+.calendar-container ::ng-deep .p-datepicker .p-datepicker-header .p-datepicker-next {
+  color: #4caf50;
+}
+
+.calendar-container ::ng-deep .p-datepicker .p-datepicker-header .p-datepicker-title .p-datepicker-month,
+.calendar-container ::ng-deep .p-datepicker .p-datepicker-header .p-datepicker-title .p-datepicker-year {
+  color: #4caf50;
+  font-weight: 600;
+}
+
+.calendar-container ::ng-deep .p-datepicker table {
   font-size: 1rem;
+  margin: 0.5rem 0;
+}
+
+.calendar-container ::ng-deep .p-datepicker table th {
+  padding: 0.5rem;
+  color: #495057;
+  font-weight: 600;
+  text-align: center;
+}
+
+.calendar-container ::ng-deep .p-datepicker table td {
+  padding: 0.2rem;
+}
+
+.calendar-container ::ng-deep .p-datepicker table td > span {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calendar-container ::ng-deep .p-datepicker table td > span:hover {
+  background: #e8f5e9;
+  cursor: pointer;
+}
+
+.calendar-container ::ng-deep .p-datepicker table td > span.p-highlight {
+  background: #4caf50;
+  color: #ffffff;
+}
+
+.calendar-container ::ng-deep .p-datepicker table td.p-datepicker-today > span {
+  border: 2px solid #4caf50;
+}
+
+.calendar-container ::ng-deep .p-datepicker table td.p-datepicker-today > span.p-highlight {
+  background: #4caf50;
+  color: #ffffff;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  margin: 0.5rem 0;
 }
 
 .img-leaf {
-  padding-left: 10px;
   width: 30px;
-  height: auto;
+  height: 30px;
+}
+
+.date-selector {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.date-selector ::ng-deep .p-calendar {
+  width: 250px;
+}
+
+.total-calories {
+  font-size: 1.2rem;
+  color: #495057;
+  background: #e8f5e9;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.calories-value {
+  font-weight: 600;
+  color: #2196F3;
+  margin-left: 0.5rem;
+}
+
+.add-alimento-button {
+  margin-bottom: 1rem;
+  background: #4caf50;
+  border: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.add-alimento-button:hover {
+  background: #388e3c;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.2);
+}
+
+.tables-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.table-wrapper {
+  background: white;
+  border-radius: 6px;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  overflow-x: auto;
+}
+
+:host ::ng-deep .p-datatable {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+}
+
+:host ::ng-deep .p-datatable .p-datatable-header {
+  background: #f8f9fa;
+  border: none;
+  border-radius: 8px 8px 0 0;
+}
+
+:host ::ng-deep .p-datatable .p-datatable-thead > tr > th {
+  background: #f8f9fa;
+  color: #495057;
+  font-weight: 600;
+  padding: 1rem;
+  border-bottom: 2px solid #e9ecef;
+}
+
+:host ::ng-deep .p-datatable .p-datatable-tbody > tr {
+  background: #ffffff;
+  transition: all 0.3s ease;
+}
+
+:host ::ng-deep .p-datatable .p-datatable-tbody > tr:hover {
+  background: #f1f3f5;
+}
+
+.meal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.header-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #495057;
+}
+
+.header-subtitle {
+  font-size: 1.1rem;
+  color: #495057;
+}
+
+.meal-calories {
+  font-size: 1rem;
+  color: #2196F3;
+  background: #e8f5e9;
+  padding: 0.3rem 0.8rem;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.editDeleteButtons {
+  margin-right: 0.5rem;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.editDeleteButtons:hover {
+  opacity: 1;
+}
+
+:host ::ng-deep .p-dialog {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+:host ::ng-deep .p-dialog .p-dialog-header {
+  background: #f8f9fa;
+  border-radius: 12px 12px 0 0;
+  padding: 1.5rem;
+}
+
+:host ::ng-deep .p-dialog .p-dialog-content {
+  border-radius: 0 0 12px 12px;
+  padding: 2rem 1.5rem;
+}
+
+.labelItem {
+  font-weight: 500;
+  color: #495057;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.required::after {
+  content: " *";
+  color: red;
 }
 
 .field {
   margin-bottom: 1.5rem;
 }
 
-.labelItem {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: bold;
+:host ::ng-deep .p-dropdown {
+  width: 100%;
 }
 
-.editDeleteButtons {
-  margin-left: 1.5rem;
+:host ::ng-deep .p-inputtext:disabled {
+  background: #f8f9fa;
+  color: #6c757d;
 }
 
 .sugestao-cardapio {
   width: 100%;
-  border-radius: 8px;
+  max-width: 800px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 12px;
+  margin: 2rem auto;
+  display: block;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-.p-toolbar {
-  margin-bottom: 2rem;
-}
-
-.p-table {
-  width: 100%;
-  margin: 0 auto; 
-}
-
-.p-table th,
-.p-table td {
-  padding: 1rem;
-  text-align: left;
-}
-
-.p-table th {
-  background: #f0f0f0;
-}
-
-.p-table td {
-  background: #fff;
-}
-
-.p-dialog .p-dialog-content {
-  padding: 2rem;
-}
-
-.p-dialog .p-dialog-footer {
-  padding: 1rem;
-  text-align: right;
+.text-center {
+  text-align: center;
+  color: #6c757d;
 }
 
 .p-button {
   margin-right: 0.5rem;
-}
-
-.tables-container {
-  display: flex;
-  flex-direction: column; 
-  gap: 2rem;
-  width: 100%;
-}
-
-.table-wrapper {
-  flex: 1;
-}
-
-.table-title {
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
-  color: #02542d;
-  font-family: "Oleo Script", system-ui;
-}
-
-.add-alimento-button {
-  margin-bottom: 1rem;
-  margin-left: 1rem;
-  background: #ADC762;
-  border-color: #ADC762;
 }
 
 .p-button-success {
@@ -141,4 +365,32 @@ th, td {
 
 td {
   font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+  .panel {
+    padding: 1rem;
+    margin: 1rem;
+  }
+  
+  .panel-title {
+    font-size: 1.2rem;
+  }
+
+  .panel-header {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .total-calories {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .meal-header {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
 }

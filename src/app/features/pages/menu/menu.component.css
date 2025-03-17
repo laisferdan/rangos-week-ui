@@ -1,6 +1,7 @@
 ::ng-deep .p-menubar {
     background: linear-gradient(90deg, rgb(225, 236, 174) 0%, #ADC865 70%);
     font-size: 1.2rem;
+    padding-left: 0;
 }
 
 ::ng-deep .p-menuitem:hover {
@@ -17,6 +18,11 @@
 
 :host ::ng-deep p-menubarsub {
     width: 100%;
+}
+
+::ng-deep .p-menubar-root-list {
+    margin-left: 0;
+    padding-left: 0;
 }
 
 .img {
@@ -36,19 +42,34 @@
 .login-button {
     margin-left: auto;
     margin-right: 20px;
-    background: none;
-    border: none;
-    color: #02542D;
-    font-size: 1.5rem;
-    font-family: "Oleo Script", system-ui;
     background-color: #FFB357;
-    border-radius : 10px;
+    border: none;
+    color: white;
+    font-size: 1.1rem;
+    font-family: "Oleo Script", system-ui;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
 }
 
 .login-button:hover {
     background-color: #f8a53f;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 179, 87, 0.3);
 }
 
 .login-button:focus {
-    box-shadow: none;
+    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #FFB357;
+}
+
+.login-button .pi {
+    font-size: 1.2rem;
+}
+
+.login-button span {
+    font-weight: 500;
+    letter-spacing: 0.5px;
 }

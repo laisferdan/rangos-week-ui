@@ -1,11 +1,31 @@
 <img src="./../../../../assets/images/sugestao-cardapio.png" alt="Sugestão de cardápio diário" class="sugestao-cardapio">
+
 <div class="panel">
   <div class="panel-header">
-    <p class="panel-title">
-      {{ currentDate | date : "EEEE, dd/MM/yyyy" | capitalizeFirstLetter }}
-      <img alt="Rango's WEEK logo" src="./../../../../assets/images/leaf-logo.png" class="img-leaf"/>
-    </p>
+    <div class="date-display">
+      <button pButton type="button" icon="pi pi-chevron-left" class="p-button-rounded p-button-text nav-button" (click)="changeDate('prev')"></button>
+      <span class="date-text">{{ selectedDate | date : "EEEE, dd/MM/yyyy" | capitalizeFirstLetter }}</span>
+      <div class="calendar-container">
+        <p-calendar 
+          [(ngModel)]="selectedDate" 
+          (onSelect)="onDateSelect()" 
+          [showIcon]="true" 
+          dateFormat="dd/mm/yy"
+          [style]="{'width': '35px'}"
+          [inputStyle]="{'display': 'none'}"
+          [showOnFocus]="false"
+          appendTo="body"
+          [baseZIndex]="1000"
+          [panelStyleClass]="'calendar-panel'"
+        ></p-calendar>
+      </div>
+      <button pButton type="button" icon="pi pi-chevron-right" class="p-button-rounded p-button-text nav-button" (click)="changeDate('next')"></button>
+    </div>
+    <div class="total-calories">
+      Total do dia: <span class="calories-value">{{ totalKcal }} kcal</span>
+    </div>
   </div>
+
   <button
     pButton
     pRipple
@@ -13,198 +33,216 @@
     icon="pi pi-plus"
     class="p-button-success add-alimento-button"
     (click)="openNew()"
+    [disabled]="!isCurrentDate"
   ></button>
+
   <div class="card">
     <p-toast></p-toast>
-    <p-toolbar styleClass="mb-4 gap-2">
-      <div class="tables-container" >
-        <div class="table-wrapper" >
-          <p-table [value]="cols" dataKey="field">
-            <ng-template pTemplate="header">
-              <tr>
-                <th scope="col" style="width: 5rem"></th>
-                <th scope="col" class="header-title">Refeições (Total kcal: {{ totalKcal }})</th>
-              </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-col let-expanded="expanded" let-i="rowIndex">
-              <tr>
-                <td>
-                  <p-button
-                    type="button"
-                    pRipple
-                    [pRowToggler]="col"
-                    [text]="true"
-                    [rounded]="true"
-                    [plain]="true"
-                    [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"
-                  ></p-button>
-                </td>
-                <td class="header-subtitle">{{ col.header }} (Total kcal: {{ cols[i].totalKcal}})</td>
-              </tr>
-            </ng-template>
-            <ng-template pTemplate="rowexpansion" let-col>
-              <tr>
-                <td colspan="2">
-                  <div class="p-3">
-                    <p-table [value]="col.details" dataKey="id" [tableStyle]="{ 'width': '100%' }">
-                      <ng-template pTemplate="header">
-                        <tr>
-                          <th style="width: 4rem"></th>
-                          <th scope="col" pSortableColumn="nome_alimento" style="min-width: 15rem">
-                            Nome do Alimento
-                            <p-sortIcon field="nome_alimento"></p-sortIcon>
-                          </th>
-                          <th scope="col" pSortableColumn="kcal">
-                            Calorias (kcal) <p-sortIcon field="kcal"></p-sortIcon>
-                          </th>
-                          <th scope="col" pSortableColumn="quantidade" style="min-width: 10rem">
-                            Quantidade (g)
-                            <p-sortIcon field="quantidade"></p-sortIcon>
-                          </th>
-                          <th scope="col" pSortableColumn="nome_categoria" style="min-width: 10rem">
-                            Categoria
-                            <p-sortIcon field="nome_categoria"></p-sortIcon>
-                          </th>
-                          <th scope="col"></th>
-                        </tr>
-                      </ng-template>
-                      <ng-template pTemplate="body" let-detail>
-                        <tr>
-                          <td></td>
-                          <td>{{ detail.nome_alimento }}</td>
-                          <td>{{ detail.kcal }}</td>
-                          <td>{{ detail.quantidade }}</td>
-                          <td>{{ detail.nome_categoria }}</td>
-                          <td>
-                            <button
-                              pButton
-                              pRipple
-                              icon="pi pi-pencil"
-                              class="p-button-rounded p-button-success editDeleteButtons"
-                              (click)="editAlimentoCardapio(detail)"
-                            ></button>
-                            <button
-                              pButton
-                              pRipple
-                              icon="pi pi-trash"
-                              class="p-button-rounded p-button-warning editDeleteButtons"
-                              (click)="deleteAlimentoCardapio(detail)"
-                            ></button>
-                          </td>
-                        </tr>
-                      </ng-template>
-                    </p-table>
-                  </div>
-                </td>
-              </tr>
-            </ng-template>
-          </p-table>
-        </div>
+    <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+
+    <div class="tables-container">
+      <div class="table-wrapper">
+        <p-table [value]="cols" dataKey="field" styleClass="p-datatable-striped">
+          <ng-template pTemplate="header">
+            <tr>
+              <th scope="col" style="width: 4rem"></th>
+              <th scope="col" class="header-title">Refeições do Dia</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-col let-expanded="expanded" let-i="rowIndex">
+            <tr>
+              <td>
+                <button 
+                  pButton
+                  type="button"
+                  pRipple
+                  [pRowToggler]="col"
+                  class="p-button-text p-button-rounded p-button-plain"
+                  [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"
+                ></button>
+              </td>
+              <td>
+                <div class="meal-header">
+                  <span class="header-subtitle">{{ col.header }}</span>
+                  <span class="meal-calories">{{ cols[i].totalKcal }} kcal</span>
+                </div>
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="rowexpansion" let-col>
+            <tr>
+              <td colspan="2">
+                <div class="p-3">
+                  <p-table [value]="col.details" dataKey="id" styleClass="p-datatable-sm" [tableStyle]="{ 'min-width': '50rem' }">
+                    <ng-template pTemplate="header">
+                      <tr>
+                        <th scope="col" pSortableColumn="nome_alimento">
+                          Alimento
+                          <p-sortIcon field="nome_alimento"></p-sortIcon>
+                        </th>
+                        <th scope="col" pSortableColumn="quantidade" style="width: 8rem">
+                          Qtd (g)
+                          <p-sortIcon field="quantidade"></p-sortIcon>
+                        </th>
+                        <th scope="col" pSortableColumn="kcal" style="width: 8rem">
+                          Kcal
+                          <p-sortIcon field="kcal"></p-sortIcon>
+                        </th>
+                        <th scope="col" pSortableColumn="nome_categoria" style="width: 10rem">
+                          Categoria
+                          <p-sortIcon field="nome_categoria"></p-sortIcon>
+                        </th>
+                        <th scope="col" style="width: 8rem">Ações</th>
+                      </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-detail>
+                      <tr>
+                        <td>{{ detail.nome_alimento }}</td>
+                        <td>{{ detail.quantidade }}</td>
+                        <td>{{ detail.kcal }}</td>
+                        <td>{{ detail.nome_categoria }}</td>
+                        <td>
+                          <button
+                            pButton
+                            pRipple
+                            icon="pi pi-pencil"
+                            class="p-button-rounded p-button-success p-button-text editDeleteButtons"
+                            pTooltip="{{ isCurrentDate ? 'Editar' : 'Não é possível editar alimentos de dias passados' }}"
+                            (click)="editAlimentoCardapio(detail)"
+                            [disabled]="!isCurrentDate"
+                          ></button>
+                          <button
+                            pButton
+                            pRipple
+                            icon="pi pi-trash"
+                            class="p-button-rounded p-button-danger p-button-text editDeleteButtons"
+                            pTooltip="{{ isCurrentDate ? 'Excluir' : 'Não é possível excluir alimentos de dias passados' }}"
+                            (click)="deleteAlimentoCardapio(detail)"
+                            [disabled]="!isCurrentDate"
+                          ></button>
+                        </td>
+                      </tr>
+                    </ng-template>
+                    <ng-template pTemplate="emptymessage">
+                      <tr>
+                        <td colspan="5" class="text-center p-4">
+                          Nenhum alimento adicionado para esta refeição
+                        </td>
+                      </tr>
+                    </ng-template>
+                  </p-table>
+                </div>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
       </div>
-    </p-toolbar>
-    <p-dialog
-      [(visible)]="cardapioDialog"
-      [style]="{ width: '60rem', height: '50rem' }"
-      header="Detalhes do Alimento"
-      [modal]="true"
-      styleClass="p-fluid"
-    >
-      <ng-template pTemplate="content">
-        <div class="formgrid grid">
-          <div class="field col-12">
-            <label for="nome_alimento" class="labelItem">Nome do alimento</label>
-            <p-dropdown
-              [options]="alimentoOptions"
-              [(ngModel)]="selectedAlimento"
-              optionLabel="nome_alimento"
-              [filter]="true"
-              filterBy="nome_alimento"
-              [showClear]="true"
-              placeholder="Selecione um alimento"
-              appendTo="body"
-              (onChange)="onAlimentoChange($event)"
-            >
-              <ng-template pTemplate="selectedItem" let-selectedOption>
-                <div class="flex align-items-center gap-2">
-                  <div>{{ selectedOption.nome_alimento }}</div>
-                </div>
-              </ng-template>
-              <ng-template let-alimento pTemplate="item">
-                <div class="flex align-items-center gap-2">
-                  <div>{{ alimento.nome_alimento }}</div>
-                </div>
-              </ng-template>
-            </p-dropdown>
-          </div>
-          <div class="field col-12">
-            <label for="nome_refeicao" class="labelItem">Nome da Refeição</label>
-            <p-dropdown
-              [options]="refeicoes"
-              (ngModel)="cardapio.nome_refeicao"
-              placeholder="Selecione uma refeição"
-              appendTo="body"
-            ></p-dropdown>
-          </div>
-          <div class="field col-12">
-            <label for="nome_categoria" class="labelItem">Categoria</label>
-            <input
-              id="nome_categoria"
-              type="text"
-              pInputText
-              [(ngModel)]="cardapio.nome_categoria"
-              [disabled]="true"
-            />
-          </div>
-          <div class="field col-12">
-            <label for="quantidade" class="labelItem">Quantidade (g)</label>
-            <input
-              id="quantidade"
-              type="text"
-              pInputText
-              [(ngModel)]="cardapio.quantidade"
-              [disabled]="true"
-            />
-          </div>
-          <div class="field col-12">
-            <label for="kcal" class="labelItem">Calorias (kcal)</label>
-            <input
-              id="kcal"
-              type="number"
-              pInputText
-              [(ngModel)]="cardapio.kcal"
-              [disabled]="true"
-            />
-          </div>
-          <div class="field col-12">
-            <label for="dia_semana" class="labelItem">Dia da Semana</label>
-            <p-dropdown
-              [options]="diasSemana"
-              (ngModel)="cardapio.dia_semana"
-              placeholder="Selecione um dia"
-              appendTo="body"
-            ></p-dropdown>
-          </div>
-        </div>
-      </ng-template>
-
-      <ng-template pTemplate="footer">
-        <p-button
-          pRipple
-          label="Cancelar"
-          icon="pi pi-times"
-          [text]="true"
-          (click)="hideDialog()"
-        ></p-button>
-        <p-button
-          (click)="saveAlimentoCardapio()"
-          pRipple
-          label="Salvar"
-          icon="pi pi-check"
-          [text]="true"
-        ></p-button>
-      </ng-template>
-    </p-dialog>
-
-    <p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
+    </div>
   </div>
 </div>
+
+<p-dialog
+  [(visible)]="cardapioDialog"
+  [style]="{ width: '500px' }"
+  header="Adicionar Alimento"
+  [modal]="true"
+  styleClass="p-fluid"
+  [maximizable]="true"
+  [draggable]="false"
+>
+  <ng-template pTemplate="content">
+    <div class="grid">
+      <div class="col-12">
+        <div class="field">
+          <label for="nome_alimento" class="labelItem required">Nome do alimento</label>
+          <p-dropdown
+            [options]="alimentoOptions"
+            [(ngModel)]="selectedAlimento"
+            optionLabel="nome_alimento"
+            [filter]="true"
+            filterBy="nome_alimento"
+            [showClear]="true"
+            placeholder="Selecione um alimento"
+            [style]="{'width':'100%'}"
+            appendTo="body"
+            (onChange)="onAlimentoChange($event)"
+            [required]="true"
+          >
+            <ng-template pTemplate="selectedItem" let-selectedOption>
+              <div class="flex align-items-center">
+                {{ selectedOption.nome_alimento }}
+              </div>
+            </ng-template>
+            <ng-template let-alimento pTemplate="item">
+              <div class="flex align-items-center">
+                {{ alimento.nome_alimento }}
+              </div>
+            </ng-template>
+          </p-dropdown>
+        </div>
+
+        <div class="field">
+          <label for="nome_refeicao" class="labelItem required">Refeição</label>
+          <p-dropdown
+            [options]="refeicoes"
+            [(ngModel)]="cardapio.nome_refeicao"
+            placeholder="Selecione uma refeição"
+            [style]="{'width':'100%'}"
+            appendTo="body"
+            [required]="true"
+          ></p-dropdown>
+        </div>
+
+        <div class="field">
+          <label for="quantidade" class="labelItem">Quantidade (g)</label>
+          <p-inputNumber
+            [(ngModel)]="cardapio.quantidade"
+            [disabled]="true"
+            [showButtons]="false"
+            [style]="{'width':'100%'}"
+          ></p-inputNumber>
+        </div>
+
+        <div class="field">
+          <label for="kcal" class="labelItem">Calorias (kcal)</label>
+          <p-inputNumber
+            [(ngModel)]="cardapio.kcal"
+            [disabled]="true"
+            [showButtons]="false"
+            [style]="{'width':'100%'}"
+          ></p-inputNumber>
+        </div>
+
+        <div class="field">
+          <label for="nome_categoria" class="labelItem">Categoria</label>
+          <input
+            pInputText
+            [(ngModel)]="cardapio.nome_categoria"
+            [disabled]="true"
+            [style]="{'width':'100%'}"
+          />
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button
+      pButton
+      pRipple
+      label="Cancelar"
+      icon="pi pi-times"
+      class="p-button-text"
+      (click)="hideDialog()"
+    ></button>
+    <button
+      pButton
+      pRipple
+      label="Salvar"
+      icon="pi pi-check"
+      class="p-button-success"
+      (click)="saveAlimentoCardapio()"
+      [disabled]="!cardapio.nome_alimento || !cardapio.nome_refeicao"
+    ></button>
+  </ng-template>
+</p-dialog>
