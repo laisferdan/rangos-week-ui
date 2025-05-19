@@ -209,16 +209,6 @@ export class HomeComponent implements OnInit {
   }
 
   public openNew() {
-    if (!this.isCurrentDate) {
-      this.messageService.add({
-        severity: 'warn',
-        summary: 'Aviso',
-        detail: 'Você só pode adicionar alimentos para o dia atual',
-        life: 3000,
-      });
-      return;
-    }
-    
     this.cardapio = new Cardapio();
     const weekdays = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
     this.cardapio.dia_semana = weekdays[this.selectedDate.getDay()];
@@ -227,32 +217,12 @@ export class HomeComponent implements OnInit {
   }
 
   public editAlimentoCardapio(cardapio: Cardapio) {
-    if (!this.isCurrentDate) {
-      this.messageService.add({
-        severity: 'warn',
-        summary: 'Aviso',
-        detail: 'Não é possível editar alimentos de dias passados',
-        life: 3000,
-      });
-      return;
-    }
-
     this.cardapio = { ...cardapio };
     this.selectedAlimento = { ...cardapio };
     this.cardapioDialog = true;
   }
 
   public deleteAlimentoCardapio(cardapio: Cardapio) {
-    if (!this.isCurrentDate) {
-      this.messageService.add({
-        severity: 'warn',
-        summary: 'Aviso',
-        detail: 'Não é possível excluir alimentos de dias passados',
-        life: 3000,
-      });
-      return;
-    }
-
     if (cardapio.id) {
       this.cardapioService.deleteCardapio(cardapio.id.toString()).subscribe({
         next: () => {
@@ -287,7 +257,9 @@ export class HomeComponent implements OnInit {
     if (event.value) {
       this.cardapio.nome_alimento = event.value.nome_alimento;
       this.cardapio.nome_categoria = event.value.nome_categoria;
-      this.cardapio.quantidade = event.value.quantidade;
+      // Parse quantidade to extract numeric value, removing 'g' unit
+      const quantidadeStr = event.value.quantidade.toString().replace('g', '');
+      this.cardapio.quantidade = parseInt(quantidadeStr);
       this.cardapio.kcal = event.value.kcal;
     } else {
       this.cardapio.nome_alimento = '';

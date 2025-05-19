@@ -8,8 +8,15 @@ import * as dbData from '../../../../json/db.json';
 })
 export class CardapioService {
   private mockCardapios: Cardapio[] = [];
-  private mockAlimentos: Cardapio[] = (dbData as any).AlimentoOptions;
+  private mockAlimentos: Cardapio[] = this.parseAlimentos((dbData as any).AlimentoOptions);
   private lastId = Math.max(...this.mockAlimentos.map(a => a.id || 0)) + 1;
+
+  private parseAlimentos(alimentos: any[]): Cardapio[] {
+    return alimentos.map(alimento => ({
+      ...alimento,
+      quantidade: parseInt(alimento.quantidade.toString().replace('g', '')),
+    }));
+  }
 
   getCardapiosByDate(date: Date): Observable<Cardapio[]> {
     return of(this.mockCardapios.filter(cardapio => {

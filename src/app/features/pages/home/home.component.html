@@ -1,4 +1,4 @@
-<img src="./../../../../assets/images/sugestao-cardapio.png" alt="Sugestão de cardápio diário" class="sugestao-cardapio">
+<img src="./../../../../assets/images/sugestao-cardapio.png" alt="Sugestão de cardápio diário" class="sugestao-cardapio" width="100%">
 
 <div class="panel">
   <div class="panel-header">
@@ -33,7 +33,8 @@
     icon="pi pi-plus"
     class="p-button-success add-alimento-button"
     (click)="openNew()"
-    [disabled]="!isCurrentDate"
+    pTooltip="Adicionar alimento"
+    tooltipPosition="top"
   ></button>
 
   <div class="card">
@@ -106,19 +107,19 @@
                             pButton
                             pRipple
                             icon="pi pi-pencil"
-                            class="p-button-rounded p-button-success p-button-text editDeleteButtons"
-                            pTooltip="{{ isCurrentDate ? 'Editar' : 'Não é possível editar alimentos de dias passados' }}"
+                            class="p-button-rounded p-button-text editDeleteButtons"
                             (click)="editAlimentoCardapio(detail)"
-                            [disabled]="!isCurrentDate"
+                            pTooltip="Editar alimento"
+                            tooltipPosition="top"
                           ></button>
                           <button
                             pButton
                             pRipple
                             icon="pi pi-trash"
-                            class="p-button-rounded p-button-danger p-button-text editDeleteButtons"
-                            pTooltip="{{ isCurrentDate ? 'Excluir' : 'Não é possível excluir alimentos de dias passados' }}"
+                            class="p-button-rounded p-button-text p-button-danger editDeleteButtons"
                             (click)="deleteAlimentoCardapio(detail)"
-                            [disabled]="!isCurrentDate"
+                            pTooltip="Excluir alimento"
+                            tooltipPosition="top"
                           ></button>
                         </td>
                       </tr>
@@ -197,7 +198,7 @@
           <label for="quantidade" class="labelItem">Quantidade (g)</label>
           <p-inputNumber
             [(ngModel)]="cardapio.quantidade"
-            [disabled]="true"
+            [readonly]="true"
             [showButtons]="false"
             [style]="{'width':'100%'}"
           ></p-inputNumber>
@@ -207,7 +208,7 @@
           <label for="kcal" class="labelItem">Calorias (kcal)</label>
           <p-inputNumber
             [(ngModel)]="cardapio.kcal"
-            [disabled]="true"
+            [readonly]="true"
             [showButtons]="false"
             [style]="{'width':'100%'}"
           ></p-inputNumber>
@@ -218,7 +219,7 @@
           <input
             pInputText
             [(ngModel)]="cardapio.nome_categoria"
-            [disabled]="true"
+            readonly
             [style]="{'width':'100%'}"
           />
         </div>
