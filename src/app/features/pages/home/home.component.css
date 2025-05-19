@@ -47,15 +47,6 @@ body {
   box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2) !important;
 }
 
-.calendar-container {
-  position: relative;
-  margin: 0 0.5rem;
-}
-
-.calendar-container ::ng-deep .p-calendar {
-  margin: 0;
-}
-
 .calendar-container ::ng-deep .p-calendar .p-button {
   background: #4caf50;
   border: 1px solid #4caf50;
@@ -67,6 +58,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative; 
 }
 
 .calendar-container ::ng-deep .p-calendar .p-button:hover {
@@ -78,81 +70,6 @@ body {
 
 .calendar-container ::ng-deep .p-calendar .p-button:focus {
   box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
-}
-
-.calendar-container ::ng-deep .p-datepicker {
-  border-radius: 8px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
-  padding: 0.5rem;
-  background: white;
-  border: 1px solid #ced4da;
-  margin-top: 5px;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1000;
-}
-
-.calendar-container ::ng-deep .p-datepicker .p-datepicker-header {
-  padding: 0.5rem;
-  border-bottom: 1px solid #dee2e6;
-  background: #f8f9fa;
-}
-
-.calendar-container ::ng-deep .p-datepicker .p-datepicker-header .p-datepicker-prev,
-.calendar-container ::ng-deep .p-datepicker .p-datepicker-header .p-datepicker-next {
-  color: #4caf50;
-}
-
-.calendar-container ::ng-deep .p-datepicker .p-datepicker-header .p-datepicker-title .p-datepicker-month,
-.calendar-container ::ng-deep .p-datepicker .p-datepicker-header .p-datepicker-title .p-datepicker-year {
-  color: #4caf50;
-  font-weight: 600;
-}
-
-.calendar-container ::ng-deep .p-datepicker table {
-  font-size: 1rem;
-  margin: 0.5rem 0;
-}
-
-.calendar-container ::ng-deep .p-datepicker table th {
-  padding: 0.5rem;
-  color: #495057;
-  font-weight: 600;
-  text-align: center;
-}
-
-.calendar-container ::ng-deep .p-datepicker table td {
-  padding: 0.2rem;
-}
-
-.calendar-container ::ng-deep .p-datepicker table td > span {
-  width: 2rem;
-  height: 2rem;
-  border-radius: 50%;
-  transition: all 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.calendar-container ::ng-deep .p-datepicker table td > span:hover {
-  background: #e8f5e9;
-  cursor: pointer;
-}
-
-.calendar-container ::ng-deep .p-datepicker table td > span.p-highlight {
-  background: #4caf50;
-  color: #ffffff;
-}
-
-.calendar-container ::ng-deep .p-datepicker table td.p-datepicker-today > span {
-  border: 2px solid #4caf50;
-}
-
-.calendar-container ::ng-deep .p-datepicker table td.p-datepicker-today > span.p-highlight {
-  background: #4caf50;
-  color: #ffffff;
 }
 
 .logo-container {
@@ -329,7 +246,7 @@ body {
 
 .sugestao-cardapio {
   width: 100%;
-  max-width: 800px;
+  max-width: 1000px;
   height: auto;
   display: block;
   margin: 0 auto;

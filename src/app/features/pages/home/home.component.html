@@ -11,12 +11,10 @@
           (onSelect)="onDateSelect()" 
           [showIcon]="true" 
           dateFormat="dd/mm/yy"
-          [style]="{'width': '35px'}"
           [inputStyle]="{'display': 'none'}"
           [showOnFocus]="false"
-          appendTo="body"
-          [baseZIndex]="1000"
           [panelStyleClass]="'calendar-panel'"
+          appendTo="body"
         ></p-calendar>
       </div>
       <button pButton type="button" icon="pi pi-chevron-right" class="p-button-rounded p-button-text nav-button" (click)="changeDate('next')"></button>

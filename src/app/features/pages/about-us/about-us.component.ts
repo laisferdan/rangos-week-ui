@@ -49,6 +49,11 @@ export class AboutUsComponent {
       role: 'Researcher',
       photo: 'assets/images/marlucia.jpg',
       linkedinLink: 'https://www.linkedin.com/in/marlucia-damalio-05617a334',
+    },
+    {
+      name: 'Sergio Alves de Lima Junior ',
+      role: 'Researcher',
+      photo: 'assets/images/foto-cinza.jpg',
     }
   ];
 }
