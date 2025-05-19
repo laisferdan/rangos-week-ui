@@ -1,10 +1,15 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrl: './profile.component.css'
+  styleUrl: './profile.component.css',
+  imports: [CommonModule, FormsModule],
+  standalone: true,
 })
+
 export class ProfileComponent implements OnInit {
   public user: any;
   public newPassword: string = '';

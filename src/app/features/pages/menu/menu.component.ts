@@ -40,6 +40,12 @@ export class MenuComponent implements OnInit {
         disabled: !this.isLoggedIn
       },
       {
+        label: 'Perfil',
+        routerLink: '/profile',
+        icon: 'pi pi-fw pi-user',
+        disabled: !this.isLoggedIn
+      },
+      {
         label: 'Dicas',
         routerLink: '/dicas',
         icon: 'pi pi-fw pi-book',

@@ -5,6 +5,7 @@ import { SignupComponent } from './features/pages/signup/signup.component';
 import { StorageComponent } from './features/pages/storage/storage.component';
 import { AboutUsComponent } from './features/pages/about-us/about-us.component';
 import { AuthGuard } from './core/guards/auth.guard';
+import { ProfileComponent } from './features/pages/profile/profile.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -13,5 +14,6 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'dicas', component: StorageComponent, canActivate: [AuthGuard] },
   { path: 'sobre-nos', component: AboutUsComponent, canActivate: [AuthGuard] },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: '/login' }
 ];
