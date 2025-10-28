@@ -1,69 +1,106 @@
-<img src="./../../../../assets/images/sugestao-cardapio.png" alt="Sugestão de cardápio diário" class="sugestao-cardapio" width="100%">
+<img
+  src="./../../../../assets/images/sugestao-cardapio.png"
+  alt="Sugestão de cardápio diário"
+  class="sugestao-cardapio"
+  width="100%"
+/>
 
 <div class="panel">
   <div class="panel-header">
     <div class="date-display">
-      <button pButton type="button" icon="pi pi-chevron-left" class="p-button-rounded p-button-text nav-button" (click)="changeDate('prev')"></button>
-      <span class="date-text">{{ selectedDate | date : "EEEE, dd/MM/yyyy" | capitalizeFirstLetter }}</span>
+      <button
+        pButton
+        type="button"
+        icon="pi pi-chevron-left"
+        class="p-button-rounded p-button-text nav-button"
+        (click)="changeDate('prev')"
+      ></button>
+      <span class="date-text">{{
+        selectedDate | date : "EEEE, dd/MM/yyyy" | capitalizeFirstLetter
+      }}</span>
       <div class="calendar-container">
-        <p-calendar 
-          [(ngModel)]="selectedDate" 
-          (onSelect)="onDateSelect()" 
-          [showIcon]="true" 
+        <p-calendar
+          [(ngModel)]="selectedDate"
+          (onSelect)="onDateSelect()"
+          [showIcon]="true"
           dateFormat="dd/mm/yy"
-          [inputStyle]="{'display': 'none'}"
+          [inputStyle]="{ display: 'none' }"
           [showOnFocus]="false"
           [panelStyleClass]="'calendar-panel'"
-          appendTo="body"
+          appendTo=".calendar-container"
         ></p-calendar>
       </div>
-      <button pButton type="button" icon="pi pi-chevron-right" class="p-button-rounded p-button-text nav-button" (click)="changeDate('next')"></button>
+      <button
+        pButton
+        type="button"
+        icon="pi pi-chevron-right"
+        class="p-button-rounded p-button-text nav-button"
+        (click)="changeDate('next')"
+      ></button>
     </div>
     <div class="total-calories">
       Total do dia: <span class="calories-value">{{ totalKcal }} kcal</span>
     </div>
   </div>
 
-  <button
-    pButton
-    pRipple
-    label="Adicionar alimento"
-    icon="pi pi-plus"
-    class="p-button-success add-alimento-button"
-    (click)="openNew()"
-    pTooltip="Adicionar alimento"
-    tooltipPosition="top"
-  ></button>
+  <div class="action-buttons">
+    <button
+      pButton
+      pRipple
+      label="Adicionar alimento"
+      icon="pi pi-plus"
+      class="p-button-success add-alimento-button"
+      (click)="openNew()"
+    ></button>
+
+    <a routerLink="/meus-registros" class="btn-records">
+      <i class="pi pi-chart-line"></i>
+      Meus Registros
+    </a>
+  </div>
 
   <div class="card">
     <p-toast></p-toast>
-    <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+    <p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
 
     <div class="tables-container">
       <div class="table-wrapper">
-        <p-table [value]="cols" dataKey="field" styleClass="p-datatable-striped">
+        <p-table
+          [value]="cols"
+          dataKey="field"
+          styleClass="p-datatable-striped"
+        >
           <ng-template pTemplate="header">
             <tr>
               <th scope="col" style="width: 4rem"></th>
               <th scope="col" class="header-title">Refeições do Dia</th>
             </tr>
           </ng-template>
-          <ng-template pTemplate="body" let-col let-expanded="expanded" let-i="rowIndex">
+          <ng-template
+            pTemplate="body"
+            let-col
+            let-expanded="expanded"
+            let-i="rowIndex"
+          >
             <tr>
               <td>
-                <button 
+                <button
                   pButton
                   type="button"
                   pRipple
                   [pRowToggler]="col"
                   class="p-button-text p-button-rounded p-button-plain"
-                  [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"
+                  [icon]="
+                    expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'
+                  "
                 ></button>
               </td>
               <td>
                 <div class="meal-header">
                   <span class="header-subtitle">{{ col.header }}</span>
-                  <span class="meal-calories">{{ cols[i].totalKcal }} kcal</span>
+                  <span class="meal-calories"
+                    >{{ cols[i].totalKcal }} kcal</span
+                  >
                 </div>
               </td>
             </tr>
@@ -72,22 +109,39 @@
             <tr>
               <td colspan="2">
                 <div class="p-3">
-                  <p-table [value]="col.details" dataKey="id" styleClass="p-datatable-sm" [tableStyle]="{ 'min-width': '50rem' }">
+                  <p-table
+                    [value]="col.details"
+                    dataKey="id"
+                    styleClass="p-datatable-sm"
+                    [tableStyle]="{ 'min-width': '50rem' }"
+                  >
                     <ng-template pTemplate="header">
                       <tr>
                         <th scope="col" pSortableColumn="nome_alimento">
                           Alimento
                           <p-sortIcon field="nome_alimento"></p-sortIcon>
                         </th>
-                        <th scope="col" pSortableColumn="quantidade" style="width: 8rem">
+                        <th
+                          scope="col"
+                          pSortableColumn="quantidade"
+                          style="width: 8rem"
+                        >
                           Qtd (g)
                           <p-sortIcon field="quantidade"></p-sortIcon>
                         </th>
-                        <th scope="col" pSortableColumn="kcal" style="width: 8rem">
+                        <th
+                          scope="col"
+                          pSortableColumn="kcal"
+                          style="width: 8rem"
+                        >
                           Kcal
                           <p-sortIcon field="kcal"></p-sortIcon>
                         </th>
-                        <th scope="col" pSortableColumn="nome_categoria" style="width: 10rem">
+                        <th
+                          scope="col"
+                          pSortableColumn="nome_categoria"
+                          style="width: 10rem"
+                        >
                           Categoria
                           <p-sortIcon field="nome_categoria"></p-sortIcon>
                         </th>
@@ -153,7 +207,9 @@
     <div class="grid">
       <div class="col-12">
         <div class="field">
-          <label for="nome_alimento" class="labelItem required">Nome do alimento</label>
+          <label for="nome_alimento" class="labelItem required"
+            >Nome do alimento</label
+          >
           <p-dropdown
             [options]="alimentoOptions"
             [(ngModel)]="selectedAlimento"
@@ -162,7 +218,7 @@
             filterBy="nome_alimento"
             [showClear]="true"
             placeholder="Selecione um alimento"
-            [style]="{'width':'100%'}"
+            [style]="{ width: '100%' }"
             appendTo="body"
             (onChange)="onAlimentoChange($event)"
             [required]="true"
@@ -186,7 +242,7 @@
             [options]="refeicoes"
             [(ngModel)]="cardapio.nome_refeicao"
             placeholder="Selecione uma refeição"
-            [style]="{'width':'100%'}"
+            [style]="{ width: '100%' }"
             appendTo="body"
             [required]="true"
           ></p-dropdown>
@@ -198,7 +254,7 @@
             [(ngModel)]="cardapio.quantidade"
             [readonly]="true"
             [showButtons]="false"
-            [style]="{'width':'100%'}"
+            [style]="{ width: '100%' }"
           ></p-inputNumber>
         </div>
 
@@ -208,7 +264,7 @@
             [(ngModel)]="cardapio.kcal"
             [readonly]="true"
             [showButtons]="false"
-            [style]="{'width':'100%'}"
+            [style]="{ width: '100%' }"
           ></p-inputNumber>
         </div>
 
@@ -218,7 +274,7 @@
             pInputText
             [(ngModel)]="cardapio.nome_categoria"
             readonly
-            [style]="{'width':'100%'}"
+            [style]="{ width: '100%' }"
           />
         </div>
       </div>

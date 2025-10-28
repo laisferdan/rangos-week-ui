@@ -1,13 +1,27 @@
 <div class="main-content">
   <h1>Sobre Nós</h1>
   <div class="introduction">
-    <p class="intro-text">Bem-vindo ao nosso Cardápio Inteligente! Somos um grupo de estudantes apaixonados por tecnologia e inovação, unidos pela ideia de transformar e facilitar a vida das pessoas.</p>
+    <p class="intro-text">
+      Bem-vindo ao nosso Cardápio Inteligente! Somos um grupo de estudantes
+      apaixonados por tecnologia e inovação, unidos pela ideia de transformar e
+      facilitar a vida das pessoas.
+    </p>
     <h2>Missão</h2>
-    <p class="mission-text">O Rango’s Week foi criado a partir da necessidade de modernizar a maneira como você explora opções de alimentação.</p>
+    <p class="mission-text">
+      O Rango’s Week foi criado a partir da necessidade de modernizar a maneira
+      como você explora opções de alimentação.
+    </p>
     <h2>O que é a plataforma</h2>
-    <p class="platform-text">Nossa plataforma oferece uma interface intuitiva, recomendações personalizadas e informações detalhadas sobre cada prato. Crie um perfil, insira alimentos e veja como armazenar suas marmitas congeladas.</p>
+    <p class="platform-text">
+      Nossa plataforma oferece uma interface intuitiva, recomendações
+      personalizadas e informações detalhadas sobre cada prato. Crie um perfil,
+      insira alimentos e veja como armazenar suas marmitas congeladas.
+    </p>
     <h2>Junte-se a nós nessa jornada!</h2>
-    <p class="journey-text">E descubra um novo jeito de apreciar suas refeições! Se tiver dúvidas ou sugestões, não hesite em nos contatar. Estamos aqui para ouvir você!</p>
+    <p class="journey-text">
+      E descubra um novo jeito de apreciar suas refeições! Se tiver dúvidas ou
+      sugestões, não hesite em nos contatar. Estamos aqui para ouvir você!
+    </p>
   </div>
   <h2>Nosso Time</h2>
   <div class="main-content-list">
@@ -19,8 +33,13 @@
         <h3>{{ member.name }}</h3>
         <p class="role">{{ member.role }}</p>
         <p class="links">
-          <a [href]="member.linkedinLink" target="_blank">LinkedIn</a>
-          <span *ngIf="member.githubLink"> | <a [href]="member.githubLink" target="_blank">GitHub</a></span>
+          <span *ngIf="member.linkedinLink">
+            <a [href]="member.linkedinLink" target="_blank">LinkedIn</a></span
+          >
+          <span *ngIf="member.linkedinLink && member.githubLink"> | </span>
+          <span *ngIf="member.githubLink">
+            <a [href]="member.githubLink" target="_blank">GitHub</a>
+          </span>
         </p>
       </div>
     </div>

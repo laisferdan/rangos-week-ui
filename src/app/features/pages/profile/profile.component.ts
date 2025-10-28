@@ -1,22 +1,22 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   standalone: true,
 })
-
 export class ProfileComponent implements OnInit {
   public user: any;
   public newPassword: string = '';
   public confirmPassword: string = '';
   public passwordChangeSuccess: boolean = false;
   public passwordChangeError: string = '';
-  public showChangePassword: boolean = false; 
+  public showChangePassword: boolean = false;
 
   constructor() {}
   ngOnInit() {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { Column } from '../../../core/models/column';
 import { MessageService, ConfirmationService } from 'primeng/api';
 import { CardapioService } from '../../../shared/services/cardapio.service';
@@ -27,6 +28,7 @@ import { CalendarModule } from 'primeng/calendar';
   imports: [
     CommonModule,
     FormsModule,
+    RouterModule,
     ButtonModule,
     DialogModule,
     DropdownModule,
@@ -38,7 +40,7 @@ import { CalendarModule } from 'primeng/calendar';
     InputTextModule,
     RippleModule,
     TooltipModule,
-    CalendarModule
+    CalendarModule,
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
@@ -114,12 +116,12 @@ export class HomeComponent implements OnInit {
 
   private updateCardapiosByDate() {
     // Clear existing details
-    this.cols.forEach(col => col.details = []);
+    this.cols.forEach((col) => (col.details = []));
 
     this.cardapioService.getCardapiosByDate(this.selectedDate).subscribe({
       next: (cardapios) => {
         this.cardapios = cardapios;
-        cardapios.forEach(cardapio => {
+        cardapios.forEach((cardapio) => {
           this.distributeCardapioToMeal(cardapio);
         });
         this.updateMealTotals();
@@ -132,17 +134,17 @@ export class HomeComponent implements OnInit {
           life: 3000,
         });
         console.error(e);
-      }
+      },
     });
   }
 
   private distributeCardapioToMeal(cardapio: Cardapio) {
     const mealMap: { [key: string]: number } = {
       'Café da manhã': 0,
-      'Cafe': 0,
-      'Almoço': 1,
-      'Almoco': 1,
-      'Jantar': 2,
+      Cafe: 0,
+      Almoço: 1,
+      Almoco: 1,
+      Jantar: 2,
     };
 
     const index = mealMap[cardapio.nome_refeicao];
@@ -184,8 +186,8 @@ export class HomeComponent implements OnInit {
   private updateIsCurrentDate() {
     const current = new Date();
     const selected = new Date(this.selectedDate);
-    
-    this.isCurrentDate = 
+
+    this.isCurrentDate =
       current.getDate() === selected.getDate() &&
       current.getMonth() === selected.getMonth() &&
       current.getFullYear() === selected.getFullYear();
@@ -210,7 +212,15 @@ export class HomeComponent implements OnInit {
 
   public openNew() {
     this.cardapio = new Cardapio();
-    const weekdays = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
+    const weekdays = [
+      'Domingo',
+      'Segunda-feira',
+      'Terça-feira',
+      'Quarta-feira',
+      'Quinta-feira',
+      'Sexta-feira',
+      'Sábado',
+    ];
     this.cardapio.dia_semana = weekdays[this.selectedDate.getDay()];
     this.submitted = false;
     this.cardapioDialog = true;
@@ -242,7 +252,7 @@ export class HomeComponent implements OnInit {
             life: 3000,
           });
           console.error(e);
-        }
+        },
       });
     }
   }
@@ -277,7 +287,15 @@ export class HomeComponent implements OnInit {
     }
 
     const selectedDate = new Date(this.selectedDate);
-    const weekdays = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
+    const weekdays = [
+      'Domingo',
+      'Segunda-feira',
+      'Terça-feira',
+      'Quarta-feira',
+      'Quinta-feira',
+      'Sexta-feira',
+      'Sábado',
+    ];
     this.cardapio.dia_semana = weekdays[selectedDate.getDay()];
 
     if (this.cardapio.id) {
@@ -299,7 +317,7 @@ export class HomeComponent implements OnInit {
             life: 3000,
           });
           console.error(e);
-        }
+        },
       });
     } else {
       this.cardapioService.saveCardapio(this.cardapio).subscribe({
@@ -320,7 +338,7 @@ export class HomeComponent implements OnInit {
             life: 3000,
           });
           console.error(e);
-        }
+        },
       });
     }
 

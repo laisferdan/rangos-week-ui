@@ -58,7 +58,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative; 
+  position: relative;
 }
 
 .calendar-container ::ng-deep .p-calendar .p-button:hover {
@@ -70,6 +70,56 @@ body {
 
 .calendar-container ::ng-deep .p-calendar .p-button:focus {
   box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
+.calendar-container {
+  position: relative;
+  display: inline-block;
+}
+
+.calendar-container ::ng-deep .p-calendar .p-datepicker {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 0.5rem;
+  z-index: 1000;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+}
+
+.calendar-container ::ng-deep .p-calendar .p-datepicker .p-datepicker-header {
+  background: #4caf50;
+  color: white;
+  border-radius: 8px 8px 0 0;
+}
+
+.calendar-container
+  ::ng-deep
+  .p-calendar
+  .p-datepicker
+  .p-datepicker-header
+  .p-datepicker-title {
+  color: white;
+}
+
+.calendar-container
+  ::ng-deep
+  .p-calendar
+  .p-datepicker
+  .p-datepicker-header
+  button {
+  color: white;
+}
+
+.calendar-container
+  ::ng-deep
+  .p-calendar
+  .p-datepicker
+  .p-datepicker-header
+  button:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .logo-container {
@@ -106,23 +156,36 @@ body {
 
 .calories-value {
   font-weight: 600;
-  color: #2196F3;
+  color: #2196f3;
   margin-left: 0.5rem;
 }
 
 .add-alimento-button {
+  padding: 12px 20px;
   margin-bottom: 1rem;
   background: #4caf50;
+  color: #fff;
   border: none;
-  border-radius: 8px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: "Oleo Script", system-ui;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   transition: all 0.3s ease;
-  font-weight: 500;
+  position: relative;
+  overflow: hidden;
 }
 
 .add-alimento-button:hover {
   background: #388e3c;
-  transform: translateY(-2px);
+  transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(76, 175, 80, 0.2);
+  text-decoration: none;
+  color: #fff;
 }
 
 .tables-container {
@@ -135,7 +198,7 @@ body {
   background: white;
   border-radius: 6px;
   padding: 1rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   overflow-x: auto;
 }
 
@@ -187,7 +250,7 @@ body {
 
 .meal-calories {
   font-size: 1rem;
-  color: #2196F3;
+  color: #2196f3;
   background: #e8f5e9;
   padding: 0.3rem 0.8rem;
   border-radius: 6px;
@@ -266,17 +329,18 @@ body {
 }
 
 .p-button-success {
-  background: #ADC762;
-  border-color: #ADC762;
+  background: #adc762;
+  border-color: #adc762;
 }
 
 .p-button-warning {
-  background: #E25B45;
-  border-color: #E25B45;
+  background: #e25b45;
+  border-color: #e25b45;
 }
 
-th, td {
-  font-family: 'Albert Sans', sans-serif;
+th,
+td {
+  font-family: "Albert Sans", sans-serif;
   font-size: 0.98rem;
 }
 
@@ -289,7 +353,7 @@ td {
     padding: 1rem;
     margin: 1rem;
   }
-  
+
   .panel-title {
     font-size: 1.2rem;
   }
@@ -309,5 +373,68 @@ td {
     flex-direction: column;
     gap: 0.5rem;
     align-items: flex-start;
+  }
+}
+
+.action-buttons {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  align-items: right;
+  justify-content: right;
+}
+
+.btn-records {
+  padding: 12px 20px;
+  background: linear-gradient(135deg, #e25b45 0%, #d44a35 100%);
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: "Oleo Script", system-ui;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-records:hover {
+  background: linear-gradient(135deg, #d44a35 0%, #c23a25 100%);
+  transform: translateY(-1px);
+  text-decoration: none;
+  color: #fff;
+}
+
+.btn-records:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(226, 91, 69, 0.3);
+}
+
+.btn-records i {
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .action-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-records {
+    justify-content: center;
+  }
+
+  .add-alimento-button {
+    width: 100%;
+  }
+
+  .btn-records {
+    width: 100%;
   }
 }

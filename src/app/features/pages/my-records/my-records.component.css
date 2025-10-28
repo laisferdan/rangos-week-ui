@@ -1,0 +1,367 @@
+.my-records-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.records-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.records-title {
+  font-family: "Oleo Script", system-ui;
+  font-size: 28px;
+  color: #02542d;
+  margin: 0 0 10px 0;
+}
+
+.records-subtitle {
+  font-family: "Albert Sans", sans-serif;
+  color: #666;
+  font-size: 16px;
+  margin: 0;
+}
+
+.records-filters {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+}
+
+.filter-group label {
+  font-family: "Albert Sans", sans-serif;
+  color: #333;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.date-input,
+.meal-select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  font-family: "Albert Sans", sans-serif;
+  font-size: 14px;
+}
+
+.date-input:focus,
+.meal-select:focus {
+  border-color: #9cba49;
+  outline: none;
+  box-shadow: 0 0 5px rgba(173, 200, 101, 0.5);
+}
+
+.records-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.summary-card {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.summary-card h3 {
+  font-family: "Oleo Script", system-ui;
+  color: #02542d;
+  font-size: 18px;
+  margin: 0 0 10px 0;
+}
+
+.summary-value {
+  font-family: "Albert Sans", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: #e25b45;
+}
+
+.charts-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.chart-container {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.records-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.no-records {
+  text-align: center;
+  padding: 40px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.no-records p {
+  font-family: "Albert Sans", sans-serif;
+  color: #666;
+  font-size: 16px;
+  margin: 0;
+}
+
+.record-item {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.record-header {
+  background-color: #adc865;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border: none;
+  width: 100%;
+  text-align: left;
+}
+
+.record-header:hover {
+  background-color: rgba(173, 200, 101, 0.8);
+}
+
+.record-header:focus {
+  outline: 2px solid #02542d;
+  outline-offset: 2px;
+}
+
+.record-date {
+  display: flex;
+  flex-direction: column;
+}
+
+.date-title-section {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.expand-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+}
+
+.expand-button:hover {
+  background-color: rgba(2, 84, 45, 0.1);
+}
+
+.expand-button i {
+  font-size: 14px;
+  color: #02542d;
+  transition: transform 0.2s ease;
+}
+
+.expand-button.expanded i {
+  transform: rotate(90deg);
+}
+
+.date-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.record-date {
+  display: flex;
+  flex-direction: column;
+}
+
+.date-text {
+  font-family: "Albert Sans", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #02542d;
+}
+
+.day-text {
+  font-family: "Albert Sans", sans-serif;
+  font-size: 14px;
+  color: #02542d;
+  opacity: 0.8;
+}
+
+.record-calories {
+  text-align: right;
+}
+
+.calories-text {
+  font-family: "Oleo Script", system-ui;
+  font-size: 20px;
+  color: #e25b45;
+  font-weight: 600;
+}
+
+.meals-container {
+  padding: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+}
+
+.meals-container.expanded {
+  padding: 20px;
+  max-height: 2000px;
+  transition: max-height 0.3s ease-in, padding 0.3s ease-in;
+}
+
+.meal-item {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 6px;
+  border-left: 4px solid #adc865;
+}
+
+.meal-item:last-child {
+  margin-bottom: 0;
+}
+
+.meal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.meal-name {
+  font-family: "Oleo Script", system-ui;
+  font-size: 18px;
+  color: #02542d;
+  margin: 0;
+}
+
+.meal-calories {
+  font-family: "Albert Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #e25b45;
+}
+
+.foods-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.food-item {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 15px;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.food-item:last-child {
+  border-bottom: none;
+}
+
+.food-name {
+  font-family: "Albert Sans", sans-serif;
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
+}
+
+.food-quantity,
+.food-calories {
+  font-family: "Albert Sans", sans-serif;
+  font-size: 14px;
+  color: #666;
+  text-align: right;
+}
+
+.food-calories {
+  color: #e25b45;
+  font-weight: 600;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .records-filters {
+    flex-direction: column;
+  }
+
+  .filter-group {
+    min-width: 100%;
+  }
+
+  .records-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .charts-section {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .chart-container {
+    min-height: 300px;
+  }
+
+  .record-header {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .date-title-section {
+    justify-content: center;
+  }
+
+  .food-item {
+    grid-template-columns: 1fr;
+    gap: 5px;
+    text-align: left;
+  }
+
+  .food-quantity,
+  .food-calories {
+    text-align: left;
+  }
+}

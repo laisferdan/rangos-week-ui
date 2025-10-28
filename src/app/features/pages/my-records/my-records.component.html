@@ -1,0 +1,117 @@
+<div class="my-records-container">
+  <div class="records-header">
+    <h2 class="records-title">Meus Registros</h2>
+    <p class="records-subtitle">Histórico das suas refeições</p>
+  </div>
+
+  <div class="records-filters">
+    <div class="filter-group">
+      <label for="dateFilter">Filtrar por data:</label>
+      <input
+        type="date"
+        id="dateFilter"
+        [(ngModel)]="selectedDate"
+        (change)="filterByDate()"
+        class="date-input"
+      />
+    </div>
+    <div class="filter-group">
+      <label for="mealFilter">Filtrar por refeição:</label>
+      <select
+        id="mealFilter"
+        [(ngModel)]="selectedMeal"
+        (change)="filterByMeal()"
+        class="meal-select"
+      >
+        <option value="">Todas as refeições</option>
+        <option value="Café da manhã">Café da manhã</option>
+        <option value="Almoço">Almoço</option>
+        <option value="Lanche da tarde">Lanche da tarde</option>
+        <option value="Jantar">Jantar</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="records-summary">
+    <div class="summary-card">
+      <h3>Total de Calorias</h3>
+      <span class="summary-value">{{ totalCalories }} kcal</span>
+    </div>
+    <div class="summary-card">
+      <h3>Refeições Registradas</h3>
+      <span class="summary-value">{{ totalMeals }}</span>
+    </div>
+    <div class="summary-card">
+      <h3>Alimentos Consumidos</h3>
+      <span class="summary-value">{{ totalFoods }}</span>
+    </div>
+  </div>
+
+  <div class="charts-section">
+    <div class="chart-container">
+      <canvas #caloriesChart></canvas>
+    </div>
+
+    <div class="chart-container">
+      <canvas #mealChart></canvas>
+    </div>
+  </div>
+
+  <div class="records-list">
+    <div *ngIf="filteredRecords.length === 0" class="no-records">
+      <p>Nenhum registro encontrado para os filtros selecionados.</p>
+    </div>
+
+    <div *ngFor="let record of filteredRecords" class="record-item">
+      <button
+        class="record-header"
+        (click)="toggleDateExpansion(getRecordId(record))"
+        [attr.aria-expanded]="isDateExpanded(getRecordId(record))"
+        [attr.aria-label]="
+          'Expandir/colapsar detalhes de ' + (record.date | date : 'dd/MM/yyyy')
+        "
+      >
+        <div class="record-date">
+          <div class="date-title-section">
+            <button
+              class="expand-button"
+              [class.expanded]="isDateExpanded(getRecordId(record))"
+            >
+              <i class="pi pi-chevron-right"></i>
+            </button>
+            <div class="date-info">
+              <span class="date-text">{{
+                record.date | date : "dd/MM/yyyy"
+              }}</span>
+              <span class="day-text">{{
+                record.date | date : "EEEE" | capitalizeFirstLetter
+              }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="record-calories">
+          <span class="calories-text">{{ record.totalCalories }} kcal</span>
+        </div>
+      </button>
+
+      <div
+        class="meals-container"
+        [class.expanded]="isDateExpanded(getRecordId(record))"
+      >
+        <div *ngFor="let meal of record.meals" class="meal-item">
+          <div class="meal-header">
+            <h4 class="meal-name">{{ meal.name }}</h4>
+            <span class="meal-calories">{{ meal.calories }} kcal</span>
+          </div>
+          <div class="foods-list">
+            <div *ngFor="let food of meal.foods" class="food-item">
+              <span class="food-name">{{ food.name }}</span>
+              <span class="food-quantity">{{ food.quantity }}g</span>
+              <span class="food-calories">{{ food.calories }} kcal</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
