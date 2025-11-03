@@ -1,0 +1,48 @@
+<div class="recommendations-container">
+  <h2>Recomendações de Refeições</h2>
+
+  <div *ngIf="carregando" class="loading">
+    <p>Carregando recomendações...</p>
+  </div>
+
+  <div *ngIf="erro" class="error">
+    <p>{{ erro }}</p>
+    <button (click)="loadRecommendations()" class="btn-try-again">
+      Tentar novamente
+    </button>
+  </div>
+
+  <div *ngIf="!carregando && !erro">
+    <div *ngIf="recommendations.length === 0" class="no-recommendations">
+      <p>Não há recomendações disponíveis no momento.</p>
+    </div>
+
+    <div class="recommendations-grid">
+      <div *ngFor="let item of recommendations" class="recommendation-card">
+        <div class="card-header">
+          <h3>{{ item.nome_alimento }}</h3>
+          <span class="category-badge">{{ item.nome_categoria }}</span>
+        </div>
+
+        <div class="card-body">
+          <p><strong>Refeição:</strong> {{ item.nome_refeicao }}</p>
+          <p><strong>Quantidade:</strong> {{ item.quantidade }}</p>
+          <p><strong>Calorias:</strong> {{ item.kcal }} kcal</p>
+          <p><strong>Dia da semana:</strong> {{ item.dia_semana }}</p>
+        </div>
+
+        <div class="card-actions">
+          <button (click)="evaluateRecommendation(item, true)" class="btn-like">
+            👍 Gostei
+          </button>
+          <button
+            (click)="evaluateRecommendation(item, false)"
+            class="btn-dislike"
+          >
+            👎 Não gostei
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

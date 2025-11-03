@@ -7,6 +7,7 @@ import { AboutUsComponent } from './features/pages/about-us/about-us.component';
 import { AuthGuard } from './core/guards/auth.guard';
 import { ProfileComponent } from './features/pages/profile/profile.component';
 import { MyRecordsComponent } from './features/pages/my-records/my-records.component';
+import { RecommendationsComponent } from './features/pages/recommendations/recommendations.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -19,6 +20,11 @@ export const routes: Routes = [
   {
     path: 'meus-registros',
     component: MyRecordsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'recommendations',
+    component: RecommendationsComponent,
     canActivate: [AuthGuard],
   },
   { path: '**', redirectTo: '/login' },

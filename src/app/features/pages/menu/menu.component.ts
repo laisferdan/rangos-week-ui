@@ -17,18 +17,13 @@ export class MenuComponent implements OnInit {
   items: MenuItem[] = [];
   isLoggedIn: boolean = false;
 
-  constructor(
-    private router: Router,
-    private authService: AuthService
-  ) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit() {
-    this.authService.isLoggedIn$.subscribe(
-      (status) => {
-        this.isLoggedIn = status;
-        this.initializeMenu();
-      }
-    );
+    this.authService.isLoggedIn$.subscribe((status) => {
+      this.isLoggedIn = status;
+      this.initializeMenu();
+    });
   }
 
   private initializeMenu() {
@@ -37,33 +32,39 @@ export class MenuComponent implements OnInit {
         label: 'Home',
         routerLink: '/home',
         icon: 'pi pi-fw pi-home',
-        disabled: !this.isLoggedIn
+        disabled: !this.isLoggedIn,
       },
       {
         label: 'Perfil',
         routerLink: '/profile',
         icon: 'pi pi-fw pi-user',
-        disabled: !this.isLoggedIn
+        disabled: !this.isLoggedIn,
+      },
+      {
+        label: 'Recomendações',
+        routerLink: '/recommendations',
+        icon: 'pi pi-fw pi-star',
+        disabled: !this.isLoggedIn,
       },
       {
         label: 'Dicas',
         routerLink: '/dicas',
         icon: 'pi pi-fw pi-book',
-        disabled: !this.isLoggedIn
+        disabled: !this.isLoggedIn,
       },
       {
         label: 'Sobre nós',
         routerLink: '/sobre-nos',
         icon: 'pi pi-fw pi-info-circle',
-        disabled: !this.isLoggedIn
+        disabled: !this.isLoggedIn,
       },
       {
         label: 'Logout',
         icon: 'pi pi-fw pi-sign-out',
         command: () => this.authService.logout(),
-        visible: this.isLoggedIn
+        visible: this.isLoggedIn,
       },
-    ];    
+    ];
   }
 
   public navigateToLogin() {
