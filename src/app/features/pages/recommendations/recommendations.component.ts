@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { Cardapio } from '../../../core/models/cardapio.model';
 import { RecommendationService } from '../../../shared/services/recommendation.service';
+import { MessageService } from 'primeng/api';
+import { friendlyHttpError } from '../../../core/utils/http-error.util';
 
 @Component({
   selector: 'app-recommendations',
@@ -15,7 +18,11 @@ export class RecommendationsComponent implements OnInit {
   carregando = false;
   erro: string | null = null;
 
-  constructor(private recommendationService: RecommendationService) {}
+  constructor(
+    private recommendationService: RecommendationService,
+    private router: Router,
+    private messageService: MessageService
+  ) {}
 
   ngOnInit(): void {
     this.loadRecommendations();
@@ -32,11 +39,28 @@ export class RecommendationsComponent implements OnInit {
       },
       error: (erro) => {
         console.error('Erro ao carregar recomendações:', erro);
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Erro',
+          detail: friendlyHttpError(
+            erro,
+            'Erro ao carregar recomendações.'
+          ),
+          life: 4000,
+        });
         this.erro =
           'Erro ao carregar recomendações. Tente novamente mais tarde.';
         this.carregando = false;
       },
     });
+  }
+
+  viewDetails(alimento: Cardapio): void {
+    // Alguns itens de AlimentoOptions (db.json) usam "codigo" no lugar de "id".
+    const id = alimento.id ?? (alimento as Cardapio & { codigo?: number }).codigo;
+    if (id !== undefined) {
+      this.router.navigate(['/marmita', id]);
+    }
   }
 
   evaluateRecommendation(alimento: Cardapio, gostou: boolean): void {

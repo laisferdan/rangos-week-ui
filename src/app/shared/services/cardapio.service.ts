@@ -1,77 +1,119 @@
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, map, throwError } from 'rxjs';
 import { Cardapio } from '../../core/models/cardapio.model';
-import * as dbData from '../../../../json/db.json';
+import { toIsoDate, weekdayFromIsoDate } from '../../core/utils/date.util';
+import { environment } from '../../../environments/environment';
+
+interface RecipeDto {
+  id: number;
+  nome_refeicao: string;
+  nome_alimento: string;
+  nome_categoria: string;
+  quantidade: string;
+  kcal: number;
+  dia_semana: string;
+}
+
+interface RecordDto {
+  id: number;
+  data: string;
+  tipo_refeicao: string;
+  recipe_id: number;
+  quantidade_g: number | null;
+  kcal: number;
+  nome_alimento: string;
+  nome_categoria: string;
+}
+
+// Rótulo exibido na tela -> valor aceito pela API (/records).
+const MEAL_TO_API: Record<string, string> = {
+  'Café da manhã': 'cafe_da_manha',
+  Cafe: 'cafe_da_manha',
+  Almoço: 'almoço',
+  Almoco: 'almoço',
+  Jantar: 'jantar',
+};
+
+const MEAL_FROM_API: Record<string, string> = {
+  cafe_da_manha: 'Café da manhã',
+  almoço: 'Almoço',
+  jantar: 'Jantar',
+};
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CardapioService {
-  private mockCardapios: Cardapio[] = [];
-  private mockAlimentos: Cardapio[] = this.parseAlimentos((dbData as any).AlimentoOptions);
-  private lastId = Math.max(...this.mockAlimentos.map(a => a.id || 0)) + 1;
+  private readonly apiUrl = environment.apiUrl;
 
-  private parseAlimentos(alimentos: any[]): Cardapio[] {
-    return alimentos.map(alimento => ({
-      ...alimento,
-      quantidade: parseInt(alimento.quantidade.toString().replace('g', '')),
-    }));
-  }
+  constructor(private http: HttpClient) {}
 
-  getCardapiosByDate(date: Date): Observable<Cardapio[]> {
-    return of(this.mockCardapios.filter(cardapio => {
-      const cardapioDate = this.getDateFromDiaSemana(cardapio.dia_semana);
-      return this.isSameDay(cardapioDate, date);
-    }));
-  }
-
-  getCardapio(): Observable<Cardapio[]> {
-    return of(this.mockCardapios);
-  }
-
+  /** Pratos disponíveis (GET /recipes). */
   getAlimentoOptions(): Observable<Cardapio[]> {
-    return of(this.mockAlimentos);
+    return this.http
+      .get<{ recipes: RecipeDto[] }>(`${this.apiUrl}/recipes`)
+      .pipe(map((response) => response.recipes.map((r) => this.fromRecipe(r))));
   }
 
+  /** Registros do usuário em uma data (GET /records?date=). */
+  getCardapiosByDate(date: Date): Observable<Cardapio[]> {
+    const params = new HttpParams().set('date', toIsoDate(date));
+    return this.http
+      .get<{ records: RecordDto[] }>(`${this.apiUrl}/records`, { params })
+      .pipe(map((response) => response.records.map((r) => this.fromRecord(r))));
+  }
+
+  /** Cria (POST) ou atualiza (PUT) um registro, conforme exista `id`. */
   saveCardapio(cardapio: Cardapio): Observable<Cardapio> {
-    if (cardapio.id) {
-      // Update existing cardapio
-      const index = this.mockCardapios.findIndex(c => c.id === cardapio.id);
-      if (index !== -1) {
-        this.mockCardapios[index] = { ...cardapio };
-        return of(this.mockCardapios[index]);
-      }
+    if (!cardapio.recipe_id) {
+      return throwError(() => new Error('Selecione um alimento válido.'));
     }
-    
-    // Create new cardapio
-    const newCardapio = { ...cardapio, id: this.lastId++ };
-    this.mockCardapios.push(newCardapio);
-    return of(newCardapio);
+
+    const body = {
+      data: cardapio.data ?? toIsoDate(new Date()),
+      tipo_refeicao: MEAL_TO_API[cardapio.nome_refeicao],
+      recipe_id: cardapio.recipe_id,
+      quantidade_g: cardapio.quantidade,
+    };
+
+    const request$ = cardapio.id
+      ? this.http.put<RecordDto>(`${this.apiUrl}/records/${cardapio.id}`, body)
+      : this.http.post<RecordDto>(`${this.apiUrl}/records`, body);
+
+    return request$.pipe(map((record) => this.fromRecord(record)));
   }
 
   deleteCardapio(id: string): Observable<void> {
-    const index = this.mockCardapios.findIndex(c => c.id === parseInt(id));
-    if (index !== -1) {
-      this.mockCardapios.splice(index, 1);
-    }
-    return of(void 0);
+    return this.http
+      .delete(`${this.apiUrl}/records/${id}`)
+      .pipe(map(() => void 0));
   }
 
-  private getDateFromDiaSemana(diaSemana: string): Date {
-    const weekdays = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
-    const today = new Date();
-    const currentDay = today.getDay();
-    const targetDay = weekdays.indexOf(diaSemana);
-    const diff = targetDay - currentDay;
-    
-    const date = new Date(today);
-    date.setDate(today.getDate() + diff);
-    return date;
+  private fromRecipe(recipe: RecipeDto): Cardapio {
+    return {
+      id: recipe.id,
+      nome_refeicao: recipe.nome_refeicao,
+      nome_alimento: recipe.nome_alimento,
+      nome_categoria: recipe.nome_categoria,
+      quantidade: parseFloat(recipe.quantidade.replace('g', '')),
+      kcal: recipe.kcal,
+      dia_semana: recipe.dia_semana,
+    };
   }
 
-  private isSameDay(date1: Date, date2: Date): boolean {
-    return date1.getDate() === date2.getDate() &&
-           date1.getMonth() === date2.getMonth() &&
-           date1.getFullYear() === date2.getFullYear();
+  private fromRecord(record: RecordDto): Cardapio {
+    return {
+      id: record.id,
+      recipe_id: record.recipe_id,
+      nome_refeicao:
+        MEAL_FROM_API[record.tipo_refeicao] ?? record.tipo_refeicao,
+      nome_alimento: record.nome_alimento,
+      nome_categoria: record.nome_categoria,
+      quantidade: record.quantidade_g ?? 0,
+      kcal: record.kcal,
+      dia_semana: weekdayFromIsoDate(record.data),
+      data: record.data,
+    };
   }
 }

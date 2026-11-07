@@ -1,0 +1,584 @@
+{
+  "Marmitas": [
+    {
+      "id": 1,
+      "nome": "Abobrinha Recheada",
+      "tipoRefeicao": "Almoço",
+      "informacaoNutricional": {
+        "valorEnergeticoKcal": 253,
+        "proteinasG": 17.3,
+        "carboidratosG": 10.3,
+        "gordurasG": 16.5,
+        "acucaresG": null,
+        "sodioMg": 705
+      },
+      "ingredientes": [
+        {
+          "nome": "Abobrinha média",
+          "quantidade": "4"
+        },
+        {
+          "nome": "Cebola picada",
+          "quantidade": "1"
+        },
+        {
+          "nome": "Dente de alho amassado",
+          "quantidade": "2"
+        },
+        {
+          "nome": "Bacon picado",
+          "quantidade": "100 g"
+        },
+        {
+          "nome": "Carne moída",
+          "quantidade": "300 g"
+        },
+        {
+          "nome": "Tomate picado",
+          "quantidade": "2"
+        },
+        {
+          "nome": "Parmesão ralado",
+          "quantidade": "50 g"
+        },
+        {
+          "nome": "Cheiro-verde",
+          "quantidade": "a gosto"
+        },
+        {
+          "nome": "Sal",
+          "quantidade": "a gosto"
+        },
+        {
+          "nome": "Pimenta-do-reino",
+          "quantidade": "a gosto"
+        }
+      ],
+      "modoPreparo": [
+        "Corte as abobrinhas ao meio, no sentido do comprimento, e retire a polpa com cuidado; reserve a polpa.",
+        "Cozinhe as abobrinhas em água e sal e reserve.",
+        "Refogue a cebola e o alho em óleo; junte o bacon e frite.",
+        "Acrescente a carne moída, sal e pimenta e frite.",
+        "Junte o tomate e a polpa de abobrinha picados e deixe cozinhar; finalize com cheiro-verde e desligue o fogo.",
+        "Disponha as abobrinhas em uma assadeira, recheie, salpique o queijo ralado e leve ao forno para gratinar."
+      ],
+      "congelamento": {
+        "comoArmazenar": "Em pote fechado próprio para freezer, mantido a -18 °C.",
+        "validadeCongelado": "Até 30 dias"
+      },
+      "aquecimento": {
+        "metodo": "Descongelar na geladeira (nunca em temperatura ambiente) e aquecer no micro-ondas, em pote próprio para micro-ondas com a tampa entreaberta. Não recongelar.",
+        "tempo": "Até ficar bem quente por inteiro, mexendo na metade do tempo."
+      }
+    },
+    {
+      "id": 2,
+      "nome": "Lasanha Berinjela",
+      "tipoRefeicao": "Almoço",
+      "informacaoNutricional": {
+        "valorEnergeticoKcal": 315,
+        "proteinasG": 22.5,
+        "carboidratosG": 12.8,
+        "gordurasG": 21.3,
+        "acucaresG": null,
+        "sodioMg": 1355
+      },
+      "ingredientes": [
+        {
+          "nome": "Berinjela grande fatiada finamente",
+          "quantidade": "3"
+        },
+        {
+          "nome": "Cebola média picada",
+          "quantidade": "1/2"
+        },
+        {
+          "nome": "Dente de alho picado ou amassado",
+          "quantidade": "2 a 3"
+        },
+        {
+          "nome": "Molho de tomate",
+          "quantidade": "1 lata"
+        },
+        {
+          "nome": "Azeitona sem caroço cortada",
+          "quantidade": "a gosto"
+        },
+        {
+          "nome": "Queijo mussarela ralado",
+          "quantidade": "300 g"
+        },
+        {
+          "nome": "Presunto fatiado",
+          "quantidade": "300 g"
+        },
+        {
+          "nome": "Azeite",
+          "quantidade": "2 colheres de sopa"
+        },
+        {
+          "nome": "Requeijão cremoso",
+          "quantidade": "1 copo"
+        },
+        {
+          "nome": "Sal e pimenta-do-reino",
+          "quantidade": "a gosto"
+        }
+      ],
+      "modoPreparo": [
+        "Grelhe as fatias de berinjela no azeite, dos dois lados, e reserve.",
+        "Na mesma panela, doure a cebola e o alho no restante do azeite.",
+        "Adicione as azeitonas e o molho de tomate, cozinhe por 10 minutos e ajuste o tempero.",
+        "Espalhe uma fina camada de molho em um refratário e monte camadas de berinjela e presunto, repetindo até acabar e finalizando com molho.",
+        "Polvilhe metade do queijo ralado, cubra com uma camada de requeijão e termine com o restante do queijo.",
+        "Leve ao forno preaquecido a 180 °C por 20 minutos, ou até o queijo gratinar."
+      ],
+      "congelamento": {
+        "comoArmazenar": "Em pote fechado próprio para freezer, mantido a -18 °C.",
+        "validadeCongelado": "Até 30 dias"
+      },
+      "aquecimento": {
+        "metodo": "Descongelar na geladeira (nunca em temperatura ambiente) e aquecer no micro-ondas, em pote próprio para micro-ondas com a tampa entreaberta. Não recongelar.",
+        "tempo": "Até ficar bem quente por inteiro, mexendo na metade do tempo."
+      }
+    },
+    {
+      "id": 3,
+      "nome": "Arroz de Forno",
+      "tipoRefeicao": "Jantar",
+      "informacaoNutricional": {
+        "valorEnergeticoKcal": 398,
+        "proteinasG": 34.8,
+        "carboidratosG": 27.3,
+        "gordurasG": 16,
+        "acucaresG": null,
+        "sodioMg": 575
+      },
+      "ingredientes": [
+        {
+          "nome": "Arroz cozido",
+          "quantidade": "3 xícaras de chá (600 g)"
+        },
+        {
+          "nome": "Seleta de legumes",
+          "quantidade": "1 lata (170 g)"
+        },
+        {
+          "nome": "Presunto em cubinhos",
+          "quantidade": "150 g"
+        },
+        {
+          "nome": "Queijo mussarela em cubinhos",
+          "quantidade": "125 g"
+        },
+        {
+          "nome": "Queijo mussarela ralado",
+          "quantidade": "75 g"
+        },
+        {
+          "nome": "Óleo",
+          "quantidade": "1 colher de sopa (15 ml)"
+        },
+        {
+          "nome": "Cebola média",
+          "quantidade": "1"
+        },
+        {
+          "nome": "Tomate",
+          "quantidade": "2"
+        },
+        {
+          "nome": "Peito de frango cozido e desfiado",
+          "quantidade": "1"
+        },
+        {
+          "nome": "Molho de tomate",
+          "quantidade": "2 colheres de sopa (30 g)"
+        },
+        {
+          "nome": "Requeijão",
+          "quantidade": "1 copo (200 g)"
+        },
+        {
+          "nome": "Sal",
+          "quantidade": "1 colher de café ou a gosto"
+        },
+        {
+          "nome": "Pimenta-do-reino",
+          "quantidade": "1 colher de chá ou a gosto"
+        }
+      ],
+      "modoPreparo": [
+        "Misture o arroz, o presunto, a mussarela em cubinhos e a seleta de legumes escorrida; reserve.",
+        "Aqueça o óleo e refogue a cebola até ficar levemente transparente.",
+        "Adicione o tomate, o frango desfiado, o molho de tomate, o sal e a pimenta e refogue por mais alguns minutos.",
+        "Em um refratário, faça uma camada de arroz, cubra com requeijão e espalhe o molho com frango; repita as camadas e termine com arroz.",
+        "Salpique a mussarela ralada e leve ao forno preaquecido a 180 °C por cerca de 15 minutos."
+      ],
+      "congelamento": {
+        "comoArmazenar": "Em pote fechado próprio para freezer, mantido a -18 °C.",
+        "validadeCongelado": "Até 30 dias"
+      },
+      "aquecimento": {
+        "metodo": "Descongelar na geladeira (nunca em temperatura ambiente) e aquecer no micro-ondas, em pote próprio para micro-ondas com a tampa entreaberta. Não recongelar.",
+        "tempo": "Até ficar bem quente por inteiro, mexendo na metade do tempo."
+      }
+    },
+    {
+      "id": 4,
+      "nome": "Arroz Carreteiro",
+      "tipoRefeicao": "Jantar",
+      "informacaoNutricional": {
+        "valorEnergeticoKcal": 344,
+        "proteinasG": 14.8,
+        "carboidratosG": 37,
+        "gordurasG": 15,
+        "acucaresG": null,
+        "sodioMg": 722
+      },
+      "ingredientes": [
+        {
+          "nome": "Arroz",
+          "quantidade": "2 xícaras de chá (400 g)"
+        },
+        {
+          "nome": "Água",
+          "quantidade": "4 xícaras de chá (800 ml)"
+        },
+        {
+          "nome": "Carne-seca dessalgada e desfiada",
+          "quantidade": "100 g"
+        },
+        {
+          "nome": "Linguiça calabresa",
+          "quantidade": "250 g"
+        },
+        {
+          "nome": "Bacon em cubos",
+          "quantidade": "70 g"
+        },
+        {
+          "nome": "Óleo",
+          "quantidade": "2 colheres de sopa"
+        },
+        {
+          "nome": "Cebola",
+          "quantidade": "1/2 (60 g)"
+        },
+        {
+          "nome": "Dente de alho",
+          "quantidade": "2 (10 g)"
+        },
+        {
+          "nome": "Folha de louro",
+          "quantidade": "2"
+        },
+        {
+          "nome": "Salsinha fresca",
+          "quantidade": "1/2 xícara de chá (50 g)"
+        },
+        {
+          "nome": "Pimenta-do-reino",
+          "quantidade": "a gosto"
+        },
+        {
+          "nome": "Caldo de limão",
+          "quantidade": "1 (opcional)"
+        }
+      ],
+      "modoPreparo": [
+        "Pique a carne-seca em cubos e ferva a água em fogo baixo.",
+        "Em fogo médio, frite o bacon e a calabresa no óleo por cerca de 5 minutos, até dourar levemente.",
+        "Refogue a cebola até ficar transparente e junte o alho por cerca de 1 minuto.",
+        "Incorpore a carne-seca, o louro e o arroz e refogue por cerca de 1 minuto.",
+        "Quando começar a grudar, adicione a água quente, misture por 30 segundos, tampe pela metade e cozinhe por cerca de 20 minutos, até a água secar.",
+        "Desligue, tampe e deixe descansar por pelo menos 5 minutos.",
+        "Finalize com a salsinha, a pimenta-do-reino e o caldo de limão."
+      ],
+      "congelamento": {
+        "comoArmazenar": "Em pote fechado próprio para freezer, mantido a -18 °C.",
+        "validadeCongelado": "Até 30 dias"
+      },
+      "aquecimento": {
+        "metodo": "Descongelar na geladeira (nunca em temperatura ambiente) e aquecer no micro-ondas, em pote próprio para micro-ondas com a tampa entreaberta. Não recongelar.",
+        "tempo": "Até ficar bem quente por inteiro, mexendo na metade do tempo."
+      }
+    },
+    {
+      "id": 5,
+      "nome": "Batata Recheada",
+      "tipoRefeicao": "Almoço",
+      "informacaoNutricional": {
+        "valorEnergeticoKcal": 859,
+        "proteinasG": 18.3,
+        "carboidratosG": 26.9,
+        "gordurasG": 68.6,
+        "acucaresG": null,
+        "sodioMg": 1323
+      },
+      "ingredientes": [
+        {
+          "nome": "Batata grande",
+          "quantidade": "4"
+        },
+        {
+          "nome": "Nata",
+          "quantidade": "1 xícara de chá (200 g)"
+        },
+        {
+          "nome": "Bacon",
+          "quantidade": "300 g"
+        },
+        {
+          "nome": "Cebola",
+          "quantidade": "1"
+        },
+        {
+          "nome": "Alho-poró",
+          "quantidade": null
+        },
+        {
+          "nome": "Queijo parmesão ralado",
+          "quantidade": "50 g"
+        },
+        {
+          "nome": "Manteiga",
+          "quantidade": "2 colheres de sopa (40 g)"
+        },
+        {
+          "nome": "Dente de alho",
+          "quantidade": "2"
+        },
+        {
+          "nome": "Requeijão",
+          "quantidade": "1 copo (200 g)"
+        },
+        {
+          "nome": "Noz-moscada",
+          "quantidade": "a gosto"
+        },
+        {
+          "nome": "Sal",
+          "quantidade": "a gosto"
+        },
+        {
+          "nome": "Pimenta-do-reino",
+          "quantidade": "a gosto"
+        }
+      ],
+      "modoPreparo": [
+        "Fure as batatas com um garfo, envolva em papel-alumínio e asse a 200 °C por 50 minutos.",
+        "Frite o bacon em cubos em fogo baixo, na própria gordura, até dourar; reserve e mantenha a gordura na panela.",
+        "Refogue o alho-poró, a cebola e metade do alho na gordura do bacon por cerca de 4 minutos.",
+        "Corte uma tampa em cada batata e retire a maior parte do miolo, formando barquinhas; leve o miolo para a panela do refogado.",
+        "Misture a manteiga derretida com o restante do alho, sal e pimenta, pincele o interior das barquinhas e leve ao forno preaquecido a 220 °C por 10 minutos.",
+        "Na panela com o miolo, tempere com noz-moscada, pimenta e sal; acrescente o requeijão e a nata e misture até formar um recheio cremoso; junte parte do bacon e do parmesão.",
+        "Recheie as batatas, finalize com bacon e parmesão e leve a 220 °C por cerca de 15 minutos, até dourar."
+      ],
+      "congelamento": {
+        "comoArmazenar": "Em pote fechado próprio para freezer, mantido a -18 °C.",
+        "validadeCongelado": "Até 30 dias"
+      },
+      "aquecimento": {
+        "metodo": "Descongelar na geladeira (nunca em temperatura ambiente) e aquecer no micro-ondas, em pote próprio para micro-ondas com a tampa entreaberta. Não recongelar.",
+        "tempo": "Até ficar bem quente por inteiro, mexendo na metade do tempo."
+      }
+    },
+    {
+      "id": 6,
+      "nome": "Tomate Recheado",
+      "tipoRefeicao": "Jantar",
+      "informacaoNutricional": {
+        "valorEnergeticoKcal": 206,
+        "proteinasG": 13.5,
+        "carboidratosG": 9.4,
+        "gordurasG": 12.4,
+        "acucaresG": null,
+        "sodioMg": 752
+      },
+      "ingredientes": [
+        {
+          "nome": "Tomate grande",
+          "quantidade": "2"
+        },
+        {
+          "nome": "Ovo",
+          "quantidade": "1"
+        },
+        {
+          "nome": "Queijo gorgonzola amassado",
+          "quantidade": "2 colheres de sopa"
+        },
+        {
+          "nome": "Creme de ricota",
+          "quantidade": "4 colheres de sopa"
+        },
+        {
+          "nome": "Lemon pepper",
+          "quantidade": "1/2 colher de sopa"
+        },
+        {
+          "nome": "Queijo parmesão",
+          "quantidade": "a gosto"
+        },
+        {
+          "nome": "Sal",
+          "quantidade": "a gosto"
+        }
+      ],
+      "modoPreparo": [
+        "Lave os tomates, corte as tampas e retire o interior com uma colher.",
+        "Misture em uma tigela o ovo, o gorgonzola, o creme de ricota, o lemon pepper e o sal.",
+        "Recheie os tomates com o creme, salpique parmesão ralado e asse em forno preaquecido a 180 °C por cerca de 30 minutos."
+      ],
+      "congelamento": {
+        "comoArmazenar": "Em pote fechado próprio para freezer, mantido a -18 °C.",
+        "validadeCongelado": "Até 30 dias"
+      },
+      "aquecimento": {
+        "metodo": "Descongelar na geladeira (nunca em temperatura ambiente) e aquecer no micro-ondas, em pote próprio para micro-ondas com a tampa entreaberta. Não recongelar.",
+        "tempo": "Até ficar bem quente por inteiro, mexendo na metade do tempo."
+      }
+    },
+    {
+      "id": 7,
+      "nome": "Acelga Crua (picada)",
+      "tipoRefeicao": null,
+      "informacaoNutricional": {
+        "valorEnergeticoKcal": 23,
+        "proteinasG": 1.8,
+        "carboidratosG": 3.7,
+        "gordurasG": 0.2,
+        "acucaresG": null,
+        "sodioMg": null
+      },
+      "ingredientes": [
+        {
+          "nome": "Acelga crua picada",
+          "quantidade": "100 g"
+        }
+      ],
+      "modoPreparo": [],
+      "congelamento": {
+        "comoArmazenar": null,
+        "validadeCongelado": null
+      },
+      "aquecimento": {
+        "metodo": null,
+        "tempo": null
+      }
+    },
+    {
+      "id": 8,
+      "nome": "Cogumelo Champignon",
+      "tipoRefeicao": "Almoço",
+      "informacaoNutricional": {
+        "valorEnergeticoKcal": 120,
+        "proteinasG": 1.9,
+        "carboidratosG": 5.1,
+        "gordurasG": 3.2,
+        "acucaresG": null,
+        "sodioMg": null
+      },
+      "ingredientes": [
+        {
+          "nome": "Cogumelo champignon em conserva",
+          "quantidade": "100 g"
+        }
+      ],
+      "modoPreparo": [],
+      "congelamento": {
+        "comoArmazenar": null,
+        "validadeCongelado": null
+      },
+      "aquecimento": {
+        "metodo": null,
+        "tempo": null
+      }
+    },
+    {
+      "id": 9,
+      "nome": "Cenoura em Fatias",
+      "tipoRefeicao": null,
+      "informacaoNutricional": {
+        "valorEnergeticoKcal": 40,
+        "proteinasG": 1.3,
+        "carboidratosG": 7.7,
+        "gordurasG": 0.2,
+        "acucaresG": null,
+        "sodioMg": null
+      },
+      "ingredientes": [
+        {
+          "nome": "Cenoura em fatias",
+          "quantidade": "100 g"
+        }
+      ],
+      "modoPreparo": [],
+      "congelamento": {
+        "comoArmazenar": null,
+        "validadeCongelado": null
+      },
+      "aquecimento": {
+        "metodo": null,
+        "tempo": null
+      }
+    },
+    {
+      "id": 10,
+      "nome": "Alface Americana",
+      "tipoRefeicao": null,
+      "informacaoNutricional": {
+        "valorEnergeticoKcal": 17,
+        "proteinasG": 0.6,
+        "carboidratosG": 1.7,
+        "gordurasG": 0.1,
+        "acucaresG": null,
+        "sodioMg": null
+      },
+      "ingredientes": [
+        {
+          "nome": "Alface americana",
+          "quantidade": "100 g"
+        }
+      ],
+      "modoPreparo": [],
+      "congelamento": {
+        "comoArmazenar": null,
+        "validadeCongelado": null
+      },
+      "aquecimento": {
+        "metodo": null,
+        "tempo": null
+      }
+    },
+    {
+      "id": 11,
+      "nome": "Café",
+      "tipoRefeicao": "Café da manhã",
+      "informacaoNutricional": {
+        "valorEnergeticoKcal": 35.3,
+        "proteinasG": null,
+        "carboidratosG": null,
+        "gordurasG": null,
+        "acucaresG": null,
+        "sodioMg": null
+      },
+      "ingredientes": [
+        {
+          "nome": "Café",
+          "quantidade": "10 g"
+        }
+      ],
+      "modoPreparo": [],
+      "congelamento": {
+        "comoArmazenar": null,
+        "validadeCongelado": null
+      },
+      "aquecimento": {
+        "metodo": null,
+        "tempo": null
+      }
+    }
+  ]
+}

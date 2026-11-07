@@ -1,0 +1,81 @@
+<main class="marmita-page">
+  <button
+    pButton
+    type="button"
+    class="btn-voltar"
+    icon="pi pi-arrow-left"
+    label="Voltar"
+    (click)="voltar()"
+  ></button>
+
+  <ng-container *ngIf="marmita; else naoEncontrada">
+    <section class="bloco bloco-titulo" aria-labelledby="titulo-marmita">
+      <h1 id="titulo-marmita">{{ marmita.nome }}</h1>
+      <p class="tipo-refeicao">
+        <strong>Tipo de refeição:</strong> {{ texto(marmita.tipoRefeicao) }}
+      </p>
+    </section>
+
+    <div class="blocos">
+      <section class="bloco" aria-labelledby="titulo-nutricional">
+        <h2 id="titulo-nutricional">Tabela nutricional</h2>
+        <p-table [value]="linhasNutricionais" [tableStyle]="{ width: '100%' }">
+          <ng-template pTemplate="header">
+            <tr>
+              <th scope="col">Nutriente</th>
+              <th scope="col">Quantidade</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-linha>
+            <tr>
+              <td>{{ linha.nutriente }}</td>
+              <td>{{ linha.valor }}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </section>
+
+      <section class="bloco" aria-labelledby="titulo-ingredientes">
+        <h2 id="titulo-ingredientes">Ingredientes</h2>
+        <ul *ngIf="marmita.ingredientes.length > 0; else semIngredientes">
+          <li *ngFor="let ingrediente of marmita.ingredientes">
+            {{ ingrediente.nome }} — {{ texto(ingrediente.quantidade) }}
+          </li>
+        </ul>
+        <ng-template #semIngredientes>
+          <p class="sem-dados">Ingredientes ainda não informados.</p>
+        </ng-template>
+      </section>
+
+      <section class="bloco" aria-labelledby="titulo-preparo">
+        <h2 id="titulo-preparo">Modo de preparo</h2>
+        <ol *ngIf="marmita.modoPreparo.length > 0; else semPreparo">
+          <li *ngFor="let passo of marmita.modoPreparo">{{ passo }}</li>
+        </ol>
+        <ng-template #semPreparo>
+          <p class="sem-dados">Modo de preparo ainda não informado.</p>
+        </ng-template>
+      </section>
+
+      <section class="bloco" aria-labelledby="titulo-armazenamento">
+        <h2 id="titulo-armazenamento">Congelamento e aquecimento</h2>
+        <dl>
+          <dt>Como armazenar</dt>
+          <dd>{{ texto(marmita.congelamento.comoArmazenar) }}</dd>
+          <dt>Validade congelado</dt>
+          <dd>{{ texto(marmita.congelamento.validadeCongelado) }}</dd>
+          <dt>Método de aquecimento</dt>
+          <dd>{{ texto(marmita.aquecimento.metodo) }}</dd>
+          <dt>Tempo de aquecimento</dt>
+          <dd>{{ texto(marmita.aquecimento.tempo) }}</dd>
+        </dl>
+      </section>
+    </div>
+  </ng-container>
+
+  <ng-template #naoEncontrada>
+    <section class="bloco" aria-labelledby="titulo-nao-encontrada">
+      <h1 id="titulo-nao-encontrada">Marmita não encontrada</h1>
+    </section>
+  </ng-template>
+</main>

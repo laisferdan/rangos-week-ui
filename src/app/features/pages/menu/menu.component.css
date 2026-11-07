@@ -25,6 +25,21 @@
     padding-left: 0;
 }
 
+/* Botão hambúrguer (mobile): impede que o flex o esprema e vire uma elipse */
+::ng-deep .p-menubar .p-menubar-button {
+    flex: 0 0 auto;
+    width: 2.5rem;
+    height: 2.5rem;
+    color: #02542D;
+    border-radius: 50%;
+}
+
+::ng-deep .p-menubar .p-menubar-button:hover,
+::ng-deep .p-menubar .p-menubar-button:focus-visible {
+    background-color: rgba(255, 255, 255, 0.6);
+    color: #02542D;
+}
+
 .img {
     width: 40%;
     padding: 2%;

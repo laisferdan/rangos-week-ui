@@ -1,34 +1,58 @@
-# RangosWeekUi
+# Rango's Week UI
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.0.
+Frontend (Angular 17, componentes standalone, PrimeNG, ng2-charts) do projeto Rango's Week. Consome a API FastAPI do repositório `fastAPI-foods` para usuários, autenticação, pratos e registros de refeições.
 
-## Development server
+## Como rodar tudo localmente
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+### 1. API (repositório `fastAPI-foods/fast_zero`)
+```bash
+poetry install
+cp .env.example .env            # defina JWT_SECRET_KEY
+poetry run alembic upgrade head
+poetry run task seed            # popula os pratos
+poetry run task run             # http://localhost:8000
+```
+Detalhes (variáveis do `.env`, Python 3.12, testes) no README da API.
 
-## Code scaffolding
+### 2. Frontend
+```bash
+npm install
+npx ng serve                    # http://localhost:4200
+```
+O `ng serve` usa `proxy.conf.json` (registrado em `angular.json` > `serve.options.proxyConfig`): tudo que o app chama em `/api/...` é encaminhado para `http://localhost:8000/...`. **Reinicie o `ng serve` se ele já estava rodando antes dessa configuração**, pois o proxy só é lido na inicialização.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Fluxo
+Cadastro (`/signup`, com nome de usuário, e-mail e senha de pelo menos 8 caracteres) → login → home com os pratos e os registros do dia → adicionar, editar e excluir alimentos → logout. Sem login, as rotas protegidas redirecionam para `/login`.
 
-## Build
+## Configuração de ambiente
+`src/environments/environment.ts` (produção) e `environment.development.ts` (usado no `ng serve`/`ng build --configuration development`) definem `apiUrl`. Ambos usam `/api`. Em produção, sirva a API sob `/api` (proxy reverso) ou troque o valor pela URL pública da API.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Autenticação
+- `AuthService` chama `POST /users` (cadastro) e `POST /auth/token` (login) e guarda o JWT em `localStorage` (`access_token`). `isLoggedIn$` considera a expiração do token.
+- `authInterceptor` (`src/app/core/interceptors`) envia `Authorization: Bearer <token>` nas chamadas a `apiUrl`. Em resposta 401 faz logout, mostra um aviso e redireciona para `/login`.
+- `AuthGuard` protege as rotas com base no token.
 
-## Running unit tests
+## Dados
+- Pratos: `GET /api/recipes` (`CardapioService.getAlimentoOptions`).
+- Registros: `GET/POST/PUT/DELETE /api/records` (`CardapioService.getCardapiosByDate`, `saveCardapio`, `deleteCardapio`).
+- Perfil: `GET/PUT /api/users/me` (`UserService`).
+- Recomendações: calculadas no navegador (`RecommendationService`) sobre os pratos de `/api/recipes`.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Ainda não usa a API
+- Detalhes da marmita (`marmita/:id`): `MarmitaService` ainda lê `json/marmitas-detalhes.json`.
+- Meus Registros (`meus-registros`): usa dados de demonstração; a API já oferece `/analytics/me/*`.
+- O histórico de avaliações das recomendações fica em memória (perde-se ao recarregar).
 
-## Running end-to-end tests
+## Scripts
+```bash
+npx ng build --configuration development   # build de desenvolvimento
+npx ng build                               # produção (veja a observação abaixo)
+npx ng test --watch=false --browsers=ChromeHeadless
+```
+Observação: o build de produção reporta estouro de *budgets* (bundle inicial e CSS de `home`/`my-records`) que já existia antes da integração com a API.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Testes
+Jasmine/Karma. Há specs para `AuthService`, `authInterceptor`, `AuthGuard`, `CardapioService` e a tela de detalhes da marmita, usando `HttpTestingController`. Se o Chrome não for encontrado, defina `CHROME_BIN`.
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-
-## API Json-server
-
-`json-server json/db.json`
-
-Or try:
-`npx json-server --watch db.json`
+## Mock antigo (json-server)
+O `json/db.json` continua no repositório como fonte dos pratos usados no seed da API, mas o app não depende mais de `json-server`.

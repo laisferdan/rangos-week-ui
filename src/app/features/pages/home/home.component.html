@@ -69,6 +69,7 @@
           [value]="cols"
           dataKey="field"
           styleClass="p-datatable-striped"
+          [loading]="carregando"
         >
           <ng-template pTemplate="header">
             <tr>
@@ -298,6 +299,7 @@
       class="p-button-success"
       (click)="saveAlimentoCardapio()"
       [disabled]="!cardapio.nome_alimento || !cardapio.nome_refeicao"
+      [loading]="salvando"
     ></button>
   </ng-template>
 </p-dialog>

@@ -21,7 +21,7 @@
         </div>
         <small class="error-message" *ngIf="errorMessage">{{ errorMessage }}</small>
         <div class="button-container">
-          <button pButton type="submit" label="Entrar" class="p-button-rounded"></button>
+          <button pButton type="submit" label="Entrar" class="p-button-rounded" [loading]="loading"></button>
         </div>
       </form>
       <div class="auth-footer">

@@ -1,0 +1,129 @@
+.marmita-page {
+  display: block;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  min-height: calc(100vh - 64px);
+  font-size: 16px;
+}
+
+.marmita-page *,
+.marmita-page {
+  line-height: 1.5;
+}
+
+.btn-voltar {
+  background-color: #02542d;
+  border: 1px solid #02542d;
+  color: #fff;
+  font-size: 16px;
+  margin-bottom: 1rem;
+}
+
+.btn-voltar:hover {
+  background-color: #013d21;
+  border-color: #013d21;
+}
+
+.btn-voltar:focus-visible {
+  outline: 3px solid #ffb357;
+  outline-offset: 2px;
+}
+
+.blocos {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.bloco {
+  background: #fff;
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 1.25rem;
+  color: #343a40;
+  overflow-wrap: anywhere;
+}
+
+h1,
+h2 {
+  color: #02542d;
+  font-family: "Oleo Script", system-ui;
+  font-weight: 600;
+  margin: 0 0 0.75rem;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+.tipo-refeicao,
+.sem-dados,
+ul,
+ol,
+dd {
+  margin: 0;
+  font-size: 16px;
+}
+
+.tipo-refeicao strong,
+dt {
+  color: #02542d;
+  font-weight: 600;
+}
+
+ul,
+ol {
+  padding-left: 1.5rem;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+dt {
+  margin-top: 0.75rem;
+}
+
+dt:first-child {
+  margin-top: 0;
+}
+
+dd {
+  margin-left: 0;
+}
+
+.sem-dados {
+  color: #495057;
+}
+
+:host ::ng-deep .p-datatable {
+  width: 100%;
+  font-size: 16px;
+}
+
+:host ::ng-deep .p-datatable * {
+  line-height: 1.5;
+}
+
+@media (min-width: 769px) {
+  .marmita-page {
+    padding: 2rem;
+  }
+
+  .blocos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  .bloco {
+    padding: 1.5rem;
+  }
+}

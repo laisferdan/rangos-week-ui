@@ -9,6 +9,12 @@
       <form (ngSubmit)="onSignup()" #signupForm="ngForm">
         <div class="form-field">
           <span class="p-float-label">
+            <input id="username" type="text" pInputText [(ngModel)]="username" name="username" required minlength="3" maxlength="50" (keypress)="onKeyPress($event)">
+            <label for="username">Nome de usuário</label>
+          </span>
+        </div>
+        <div class="form-field">
+          <span class="p-float-label">
             <input id="email" type="email" pInputText [(ngModel)]="email" name="email" required email (keypress)="onKeyPress($event)">
             <label for="email">Email</label>
           </span>
@@ -27,7 +33,7 @@
         </div>
         <small class="error-message" *ngIf="errorMessage">{{ errorMessage }}</small>
         <div class="button-container">
-          <button pButton type="submit" label="Criar Conta" class="p-button-rounded"></button>
+          <button pButton type="submit" label="Criar Conta" class="p-button-rounded" [loading]="loading"></button>
         </div>
       </form>
       <div class="auth-footer">

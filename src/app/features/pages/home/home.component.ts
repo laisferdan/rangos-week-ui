@@ -8,6 +8,8 @@ import { CardapioService } from '../../../shared/services/cardapio.service';
 import { Cardapio } from '../../../core/models/cardapio.model';
 import { AuthService } from '../../../shared/services/auth.service';
 import { CapitalizeFirstLetterPipe } from '../../../shared/pipes/capitalize-first-letter.pipe';
+import { toIsoDate } from '../../../core/utils/date.util';
+import { friendlyHttpError } from '../../../core/utils/http-error.util';
 
 // PrimeNG Imports
 import { ButtonModule } from 'primeng/button';
@@ -70,6 +72,8 @@ export class HomeComponent implements OnInit {
   ];
   public totalKcal: number = 0;
   public isLoggedIn: boolean = true;
+  public carregando: boolean = false;
+  public salvando: boolean = false;
 
   constructor(
     private cardapioService: CardapioService,
@@ -117,6 +121,7 @@ export class HomeComponent implements OnInit {
   private updateCardapiosByDate() {
     // Clear existing details
     this.cols.forEach((col) => (col.details = []));
+    this.carregando = true;
 
     this.cardapioService.getCardapiosByDate(this.selectedDate).subscribe({
       next: (cardapios) => {
@@ -125,12 +130,15 @@ export class HomeComponent implements OnInit {
           this.distributeCardapioToMeal(cardapio);
         });
         this.updateMealTotals();
+        this.carregando = false;
       },
       error: (e) => {
+        this.carregando = false;
+        this.updateMealTotals();
         this.messageService.add({
           severity: 'error',
           summary: 'Erro',
-          detail: 'Erro ao carregar cardápio',
+          detail: friendlyHttpError(e, 'Erro ao carregar cardápio'),
           life: 3000,
         });
         console.error(e);
@@ -175,7 +183,7 @@ export class HomeComponent implements OnInit {
         this.messageService.add({
           severity: 'error',
           summary: 'Erro',
-          detail: 'Erro ao carregar opções de alimentos',
+          detail: friendlyHttpError(e, 'Erro ao carregar opções de alimentos'),
           life: 3000,
         });
         console.error(e);
@@ -248,7 +256,7 @@ export class HomeComponent implements OnInit {
           this.messageService.add({
             severity: 'error',
             summary: 'Erro',
-            detail: 'Erro ao excluir cardápio',
+            detail: friendlyHttpError(e, 'Erro ao excluir cardápio'),
             life: 3000,
           });
           console.error(e);
@@ -265,6 +273,7 @@ export class HomeComponent implements OnInit {
 
   public onAlimentoChange(event: any) {
     if (event.value) {
+      this.cardapio.recipe_id = event.value.id;
       this.cardapio.nome_alimento = event.value.nome_alimento;
       this.cardapio.nome_categoria = event.value.nome_categoria;
       // Parse quantidade to extract numeric value, removing 'g' unit
@@ -272,6 +281,7 @@ export class HomeComponent implements OnInit {
       this.cardapio.quantidade = parseInt(quantidadeStr);
       this.cardapio.kcal = event.value.kcal;
     } else {
+      this.cardapio.recipe_id = undefined;
       this.cardapio.nome_alimento = '';
       this.cardapio.nome_categoria = '';
       this.cardapio.quantidade = 0;
@@ -298,51 +308,39 @@ export class HomeComponent implements OnInit {
     ];
     this.cardapio.dia_semana = weekdays[selectedDate.getDay()];
 
-    if (this.cardapio.id) {
-      this.cardapioService.saveCardapio(this.cardapio).subscribe({
-        next: (response) => {
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Sucesso',
-            detail: 'Cardápio atualizado',
-            life: 3000,
-          });
-          this.updateCardapiosByDate();
-        },
-        error: (e) => {
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Erro',
-            detail: 'Erro ao atualizar cardápio',
-            life: 3000,
-          });
-          console.error(e);
-        },
-      });
-    } else {
-      this.cardapioService.saveCardapio(this.cardapio).subscribe({
-        next: (response) => {
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Sucesso',
-            detail: 'Cardápio criado',
-            life: 3000,
-          });
-          this.updateCardapiosByDate();
-        },
-        error: (e) => {
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Erro',
-            detail: 'Erro ao criar cardápio',
-            life: 3000,
-          });
-          console.error(e);
-        },
-      });
-    }
+    this.cardapio.data = toIsoDate(selectedDate);
 
-    this.cardapioDialog = false;
-    this.cardapio = new Cardapio();
+    const isUpdate = !!this.cardapio.id;
+    this.salvando = true;
+
+    this.cardapioService.saveCardapio(this.cardapio).subscribe({
+      next: () => {
+        this.salvando = false;
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Sucesso',
+          detail: isUpdate ? 'Cardápio atualizado' : 'Cardápio criado',
+          life: 3000,
+        });
+        this.cardapioDialog = false;
+        this.cardapio = new Cardapio();
+        this.selectedAlimento = null;
+        this.updateCardapiosByDate();
+      },
+      error: (e) => {
+        // Mantém o diálogo aberto para o usuário tentar novamente.
+        this.salvando = false;
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Erro',
+          detail: friendlyHttpError(
+            e,
+            isUpdate ? 'Erro ao atualizar cardápio' : 'Erro ao criar cardápio'
+          ),
+          life: 3000,
+        });
+        console.error(e);
+      },
+    });
   }
 }

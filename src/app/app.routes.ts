@@ -8,6 +8,7 @@ import { AuthGuard } from './core/guards/auth.guard';
 import { ProfileComponent } from './features/pages/profile/profile.component';
 import { MyRecordsComponent } from './features/pages/my-records/my-records.component';
 import { RecommendationsComponent } from './features/pages/recommendations/recommendations.component';
+import { MealDetailsComponent } from './features/pages/meal-details/meal-details.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -25,6 +26,11 @@ export const routes: Routes = [
   {
     path: 'recommendations',
     component: RecommendationsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'marmita/:id',
+    component: MealDetailsComponent,
     canActivate: [AuthGuard],
   },
   { path: '**', redirectTo: '/login' },

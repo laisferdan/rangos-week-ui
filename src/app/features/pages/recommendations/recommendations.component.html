@@ -31,6 +31,16 @@
           <p><strong>Dia da semana:</strong> {{ item.dia_semana }}</p>
         </div>
 
+        <div class="card-details">
+          <button
+            type="button"
+            class="btn-details"
+            (click)="viewDetails(item)"
+          >
+            Ver detalhes
+          </button>
+        </div>
+
         <div class="card-actions">
           <button (click)="evaluateRecommendation(item, true)" class="btn-like">
             👍 Gostei

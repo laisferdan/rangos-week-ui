@@ -3,6 +3,7 @@ import { CommonModule, registerLocaleData } from '@angular/common';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { MenuComponent } from './features/pages/menu/menu.component';
 import localePT from '@angular/common/locales/pt';
+import { ToastModule } from 'primeng/toast';
 
 registerLocaleData(localePT);
 @Component({
@@ -12,7 +13,8 @@ registerLocaleData(localePT);
     CommonModule,
     RouterOutlet,
     RouterLink,
-    MenuComponent
+    MenuComponent,
+    ToastModule
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],

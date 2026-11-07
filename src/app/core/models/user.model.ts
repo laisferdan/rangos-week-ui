@@ -1,14 +1,11 @@
-export default class User {
-    name: string = '';
-    email: string = '';
-    senha: string = '';
-    _id: string = '';
-    permission: string = '';
-  
-    constructor(name: string, email: string, password: string,  id: string) {
-      this.name = name;
-      this.email = email;
-      this.senha = password;
-      this._id = id;
-    }
+export interface User {
+  id: number;
+  username: string;
+  email: string;
+}
+
+export interface UserUpdate {
+  username?: string;
+  email?: string;
+  password?: string;
 }
