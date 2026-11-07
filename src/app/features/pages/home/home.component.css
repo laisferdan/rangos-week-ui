@@ -269,17 +269,50 @@ body {
 
 :host ::ng-deep .p-dialog {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  overflow: hidden;
+  max-width: 95vw;
 }
 
 :host ::ng-deep .p-dialog .p-dialog-header {
   background: #f8f9fa;
-  border-radius: 12px 12px 0 0;
-  padding: 1.5rem;
+  border-radius: 0;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #e9ecef;
 }
 
 :host ::ng-deep .p-dialog .p-dialog-content {
-  border-radius: 0 0 12px 12px;
-  padding: 2rem 1.5rem;
+  border-radius: 0;
+  padding: 1.5rem;
+  overflow-y: auto;
+}
+
+:host ::ng-deep .p-dialog .p-dialog-content .field:last-child {
+  margin-bottom: 0;
+}
+
+:host ::ng-deep .p-dialog .p-dialog-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  background: #f8f9fa;
+  border-top: 1px solid #e9ecef;
+}
+
+:host ::ng-deep .p-dialog .p-dialog-footer .p-button {
+  margin: 0;
+  width: auto;
+}
+
+:host ::ng-deep .p-dialog .p-dialog-footer .p-button-text {
+  color: #6c757d;
+}
+
+:host ::ng-deep .p-dialog .p-dialog-footer .p-button-text:hover {
+  background: #e9ecef;
+  color: #495057;
 }
 
 .labelItem {
